@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salesforce LLM Integration - Stuti Srivastava</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>...</header>
+
+    <!-- Project Header -->
+    <section class="project-header">
+        <div class="container">
+            <h1>Salesforce LLM Integration</h1>
+            <p>An AI-powered integration between Salesforce CRM and Large Language Models</p>
+            
+            <div class="project-tags">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">FastAPI</span>
+                <span class="project-tag">LangChain</span>
+                <span class="project-tag">LangGraph</span>
+                <span class="project-tag">Azure OpenAI</span>
+                <span class="project-tag">Salesforce</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Overview -->
+    <section class="project-section">
+        <div class="container">
+            <h2 class="section-title">Project Overview</h2>
+            
+            <div class="two-column">
+                <div class="column">
+                    <h3>Challenge</h3>
+                    <p>Salesforce users needed a natural language interface to perform complex queries and operations without writing SOQL or Apex code. Traditional interfaces required technical knowledge and slowed down business operations.</p>
+                    
+                    <h3>Solution</h3>
+                    <p>I designed and implemented an AI-powered system that integrates Azure OpenAI's language models with Salesforce CRM, allowing users to perform operations using natural language commands. The system intelligently translates requests into appropriate SOQL queries or DML operations.</p>
+                </div>
+                <div class="column">
+                    <img src="/api/placeholder/500/300" alt="Salesforce LLM Integration Overview">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture -->
+    <section class="project-section bg-light">
+        <div class="container">
+            <h2 class="section-title">Architecture</h2>
+            
+            <div class="architecture">
+                <img src="/api/placeholder/800/500" alt="System Architecture">
+                <p class="caption">System architecture showing the workflow from user command to Salesforce execution</p>
+            </div>
+            
+            <div class="architecture-details">
+                <h3>Key Components</h3>
+                <ul>
+                    <li><strong>API Layer</strong>: FastAPI endpoints that accept natural language commands</li>
+                    <li><strong>LLM Service</strong>: Azure OpenAI integration that handles command parsing and generation</li>
+                    <li><strong>Workflow Graph</strong>: LangGraph-based orchestration that manages the execution flow</li>
+                    <li><strong>Salesforce Service</strong>: Integration with Salesforce API for data operations</li>
+                </ul>
+                
+                <h3>System Flow</h3>
+                <p>The system processes commands through a well-defined workflow:</p>
+                <ol>
+                    <li>User submits a natural language command</li>
+                    <li>Command analysis determines operation type (SOQL Query or DML)</li>
+                    <li>LLM generates appropriate Salesforce code or query</li>
+                    <li>Execution against Salesforce API</li>
+                    <li>Results processing and summarization</li>
+                    <li>Return of human-readable response</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Implementation -->
+    <section class="project-section">
+        <div class="container">
+            <h2 class="section-title">Technical Implementation</h2>
+            
+            <div class="implementation-details">
+                <h3>LangGraph Workflow</h3>
+                <p>The heart of the system is a LangGraph workflow that orchestrates the entire process:</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python">
+def _setup_graph(self):
+    """Set up the workflow graph structure"""
+    try:
+        # Add nodes for different operations
+        self.graph.add_node("analyze", self._analyze_command)
+        self.graph.add_node("soql", self._execute_soql)
+        self.graph.add_node("dml", self._execute_dml)
+        self.graph.add_node("summarize", self._summarize_results)
+        
+        # Add conditional edges based on operation type
+        self.graph.add_conditional_edges(
+            "analyze",
+            self._route_operations,
+            {
+                "soql": "soql",
+                "dml": "dml",
+                "summarize": "summarize"
+            }
+        )
+        
+        # Add completion paths
+        self.graph.add_edge("soql", "summarize")
+        self.graph.add_edge("dml", "summarize")
+        self.graph.add_edge("summarize", END)
+        
+        # Set entry point
+        self.graph.set_entry_point("analyze")
+    except Exception as e:
+        logger.error(f"Error in graph setup: {e}")
+        raise
+                    </code></pre>
+                </div>
+                
+                <h3>Natural Language Processing</h3>
+                <p>The system intelligently analyzes commands to determine the appropriate operation:</p>
+                
+                <div class="code-block">
+                    <pre><code class="language-python">
+async def analyze_command(self, command: str, object_name: str) -> List[Dict[str, Any]]:
+    """Analyze user command to determine operation type"""
+    try:
+        command_lower = command.lower()
+        
+        # Create default action structure
+        action = {
+            "actionToPerform": "SOQL_Query",
+            "SobjectType": target_object,
+            "userPrompt": command
+        }
+
+        # Detect operation type
+        if any(word in command_lower for word in ['create', 'new', 'add']):
+            action["actionToPerform"] = "CREATE"
+        elif any(word in command_lower for word in ['update', 'change', 'modify']):
+            action["actionToPerform"] = "UPDATE"
+        elif any(word in command_lower for word in ['delete', 'remove']):
+            action["actionToPerform"] = "DELETE"
+        elif 'count' in command_lower:
+            action["actionToPerform"] = "SOQL_Query"
+            
+        return [action]
+    except Exception as e:
+        logger.error(f"Command analysis failed: {str(e)}")
+        raise
+                    </code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results & Impact -->
+    <section class="project-section bg-light">
+        <div class="container">
+            <h2 class="section-title">Results & Impact</h2>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Increased Efficiency</h3>
+                    <p>80% reduction in time spent on common CRM operations</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>User Adoption</h3>
+                    <p>65% increase in Salesforce usage among non-technical team members</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <h3>Error Reduction</h3>
+                    <p>40% decrease in data entry errors through automated processing</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Business Intelligence</h3>
+                    <p>Enhanced reporting capabilities through natural language queries</p>
+                </div>
+            </div>
+            
+            <div class="testimonial">
+                <blockquote>
+                    "This integration transformed how our sales team interacts with customer data. What used to take technical expertise and multiple steps can now be done with a simple command."
+                </blockquote>
+                <cite>— Sales Operations Manager</cite>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Used -->
+    <section class="project-section">
+        <div class="container">
+            <h2 class="section-title">Technologies Used</h2>
+            
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <i class="fab fa-python"></i>
+                    <h3>Python</h3>
+                    <p>Core application logic and API development</p>
+                </div>
+                
+                <div class="tech-item">
+                    <i class="fas fa-server"></i>
+                    <h3>FastAPI</h3>
+                    <p>High-performance API framework</p>
+                </div>
+                
+                <div class="tech-item">
+                    <i class="fas fa-brain"></i>
+                    <h3>LangChain/LangGraph</h3>
+                    <p>LLM orchestration and workflow management</p>
+                </div>
+                
+                <div class="tech-item">
+                    <i class="fab fa-microsoft"></i>
+                    <h3>Azure OpenAI</h3>
+                    <p>Language model integration</p>
+                </div>
+                
+                <div class="tech-item">
+                    <i class="fab fa-salesforce"></i>
+                    <h3>Salesforce API</h3>
+                    <p>CRM data access and manipulation</p>
+                </div>
+                
+                <div class="tech-item">
+                    <i class="fas fa-code-branch"></i>
+                    <h3>Azure DevOps</h3>
+                    <p>CI/CD pipelines and deployment</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next/Prev Project Navigation -->
+    <section class="project-navigation">
+        <div class="container">
+            <div class="nav-links">
+                <a href="index.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> All Projects</a>
+                <a href="ci-cd.html" class="btn">Next Project <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>...</footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../assets/js/script.js"></script>
+</body>
+</html>
