@@ -4,198 +4,865 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume - Stuti Srivastava</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Light theme (default) */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --accent-color: #4fc3f7;
+            --accent-hover: #0b7dda;
+            --card-bg: #ffffff;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --border-color: #e9ecef;
+            --transition: all 0.3s ease;
+            --tag-bg: #e9f7fe;
+            --tag-text: #4fc3f7;
+        }
+
+        .dark-theme {
+            --bg-primary: #212529;
+            --bg-secondary: #343a40;
+            --text-primary: #f8f9fa;
+            --text-secondary: #adb5bd;
+            --card-bg: #2b3035;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            --border-color: #495057;
+            --tag-bg: #164e63;
+            --tag-text: #38bdf8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--bg-primary);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo a {
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 5px;
+            margin-left: 20px;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Resume Hero Section */
+        .resume-hero {
+            padding: 150px 0 60px;
+            text-align: center;
+        }
+
+        .resume-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--text-primary), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .resume-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--text-secondary);
+        }
+
+        .resume-download {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .resume-download:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            color: white;
+        }
+
+        .resume-download i {
+            margin-right: 8px;
+        }
+
+        /* Resume Content */
+        .resume-section {
+            padding: 60px 0;
+        }
+
+        .resume-section:nth-child(even) {
+            background-color: var(--bg-secondary);
+        }
+
+        .resume-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: var(--text-primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            background-color: var(--accent-color);
+            bottom: -10px;
+            left: 0;
+        }
+
+        /* Experience Items */
+        .resume-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .resume-timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--border-color);
+            top: 5px;
+            bottom: 0;
+            left: 0;
+        }
+
+        .resume-item {
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .resume-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .resume-item::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            top: 5px;
+            left: -38px;
+            z-index: 2;
+        }
+
+        .resume-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .resume-title {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .resume-subtitle {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .resume-date {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+
+        .resume-date i {
+            margin-right: 5px;
+        }
+
+        .resume-content {
+            color: var(--text-secondary);
+        }
+
+        .resume-content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .resume-content li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .resume-content li::before {
+            content: '•';
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            position: absolute;
+            left: 5px;
+            top: -1px;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-category {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .skill-category h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+            bottom: 0;
+            left: 0;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background-color: var(--tag-bg);
+            color: var(--tag-text);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Education Section */
+        .education-item {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 25px;
+            transition: var(--transition);
+        }
+
+        .education-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .education-title {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .education-date {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .education-institution {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .education-details {
+            color: var(--text-secondary);
+        }
+
+        /* Certifications Section */
+        .certifications-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .certification-item {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .certification-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .certification-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        .certification-content h3 {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .certification-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-secondary);
+            color: var(--text-secondary);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-social {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-social a {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--bg-primary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+                gap: 2rem;
+                padding: 2rem 0;
+            }
+            .nav-links.active {
+                left: 0;
+            }
+            .resume-hero h1 {
+                font-size: 2.5rem;
+            }
+            .resume-header {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .resume-date {
+                margin-top: 5px;
+            }
+            .certifications-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header/Navigation -->
-    <header>...</header>
-
-    <!-- Resume Header -->
-    <section class="page-header">
+    <header>
         <div class="container">
-            <h1>Resume</h1>
-            <p>My professional experience and qualifications</p>
-            <a href="assets/files/Stuti_Srivastava_Resume.pdf" class="btn" download><i class="fas fa-download"></i> Download PDF</a>
+            <nav>
+                <div class="logo">
+                    <a href="index.html">Stuti Srivastava</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="resume.html" class="active">Resume</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="resume-hero">
+        <div class="container">
+            <h1>Professional Resume</h1>
+            <p>DevOps & AI Engineer specializing in cloud infrastructure and generative AI</p>
+            <a href="assets/files/Stuti_Srivastava_Resume.pdf" class="resume-download" download>
+                <i class="fas fa-download"></i> Download Resume (PDF)
+            </a>
         </div>
     </section>
 
-    <!-- Professional Experience -->
     <section class="resume-section">
         <div class="container">
-            <h2>Professional Experience</h2>
-            
-            <div class="experience-item">
-                <div class="experience-header">
-                    <h3>IT DevOps Engineer</h3>
-                    <p class="company">Philips, Chennai</p>
-                    <p class="duration">September 2023 - Present</p>
-                </div>
-                <div class="experience-content">
-                    <h4>Backend Development & System Architecture</h4>
-                    <ul>
-                        <li>Architected and implemented microservices-based system using FastAPI and Python handling real-time data processing and Salesforce integration</li>
-                        <li>Designed and built RESTful APIs for seamless integration between Azure OpenAI services and Salesforce CRM systems</li>
-                        <li>Implemented comprehensive test suites achieving over 75% coverage across services and Salesforce Components</li>
-                    </ul>
+            <div class="resume-container">
+                <h2 class="section-title">Experience</h2>
+                
+                <div class="resume-timeline">
+                    <!-- Current Role -->
+                    <div class="resume-item">
+                        <div class="resume-header">
+                            <div>
+                                <h3 class="resume-title">IT DevOps Engineer</h3>
+                                <p class="resume-subtitle">Philips, Chennai</p>
+                            </div>
+                            <p class="resume-date"><i class="far fa-calendar-alt"></i> September 2023 - Present</p>
+                        </div>
+                        <div class="resume-content">
+                            <h4>Backend Development & System Architecture</h4>
+                            <ul>
+                                <li>Architected and implemented microservices-based system using FastAPI and Python for real-time data processing and Salesforce integration</li>
+                                <li>Designed and built RESTful APIs for seamless integration between Azure OpenAI services and Salesforce CRM systems</li>
+                                <li>Implemented comprehensive test suites achieving over 75% coverage across services and Salesforce Components</li>
+                                <li>Developed LLM solutions including Retrieval Augmented Generation (RAG) implementations and prompt engineering</li>
+                            </ul>
+                            
+                            <h4>Full Stack Development</h4>
+                            <ul>
+                                <li>Built responsive web applications using Lightning Web Components and modern JavaScript frameworks</li>
+                                <li>Developed custom backend services in Apex, implementing complex business logic and data processing</li>
+                                <li>Created scalable database solutions using SOQL and SQL, optimizing query performance and data management</li>
+                            </ul>
+                            
+                            <h4>Cloud & DevOps</h4>
+                            <ul>
+                                <li>Containerized applications using Docker and orchestrated deployments with Kubernetes</li>
+                                <li>Implemented CI/CD pipelines using Azure DevOps for automated testing and deployment</li>
+                                <li>Utilized cloud services across AWS, Azure, and GCP for various application components</li>
+                            </ul>
+                        </div>
+                    </div>
                     
-                    <h4>Full Stack Development</h4>
-                    <ul>
-                        <li>Built responsive web applications using Lightning Web Components and modern JavaScript frameworks</li>
-                        <li>Developed custom backend services in Apex, implementing complex business logic and data processing</li>
-                        <li>Created scalable database solutions using SOQL and SQL, optimizing query performance and data management</li>
-                    </ul>
+                    <!-- DevOps Intern -->
+                    <div class="resume-item">
+                        <div class="resume-header">
+                            <div>
+                                <h3 class="resume-title">DevOps Engineer Intern</h3>
+                                <p class="resume-subtitle">Philips, Bengaluru</p>
+                            </div>
+                            <p class="resume-date"><i class="far fa-calendar-alt"></i> September 2022 - September 2023</p>
+                        </div>
+                        <div class="resume-content">
+                            <ul>
+                                <li>Developed automated deployment pipelines for cloud-based applications like Salesforce</li>
+                                <li>Created automated testing frameworks for quality assurance</li>
+                                <li>Assisted in cloud infrastructure management and optimization</li>
+                                <li>Collaborated with development teams to streamline CI/CD processes</li>
+                            </ul>
+                        </div>
+                    </div>
                     
-                    <h4>Cloud & DevOps</h4>
-                    <ul>
-                        <li>Containerized applications using Docker and orchestrated deployments with Kubernetes</li>
-                        <li>Implemented CI/CD pipelines using Azure DevOps for automated testing and deployment</li>
-                        <li>Utilized cloud services across AWS, Azure, and GCP for various application components</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <!-- Add other experience items following the same pattern -->
-            <div class="experience-item">
-                <div class="experience-header">
-                    <h3>DevOps Engineer Intern</h3>
-                    <p class="company">Philips, Bengaluru</p>
-                    <p class="duration">September 2022 – September 2023</p>
-                </div>
-                <div class="experience-content">
-                    <ul>
-                        <li>Developed automated deployment pipelines for cloud-based applications like Salesforce</li>
-                        <li>Created automated testing frameworks for quality assurance</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="experience-item">
-                <div class="experience-header">
-                    <h3>Software Development Intern</h3>
-                    <p class="company">AMY Softech, New Delhi</p>
-                    <p class="duration">August 2020 – January 2021</p>
-                </div>
-                <div class="experience-content">
-                    <ul>
-                        <li>Developed full-stack applications using Microsoft Power Apps and Dynamics 365</li>
-                        <li>Implemented RESTful APIs for data integration between systems</li>
-                        <li>Created automated workflows for business process optimization</li>
-                    </ul>
+                    <!-- Software Development Intern -->
+                    <div class="resume-item">
+                        <div class="resume-header">
+                            <div>
+                                <h3 class="resume-title">Software Development Intern</h3>
+                                <p class="resume-subtitle">AMY Softech, New Delhi</p>
+                            </div>
+                            <p class="resume-date"><i class="far fa-calendar-alt"></i> August 2020 - January 2021</p>
+                        </div>
+                        <div class="resume-content">
+                            <ul>
+                                <li>Developed full-stack applications using Microsoft Power Apps and Dynamics 365</li>
+                                <li>Implemented RESTful APIs for data integration between systems</li>
+                                <li>Created automated workflows for business process optimization</li>
+                                <li>Participated in requirements gathering and solution design</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Education -->
-    <section class="resume-section bg-light">
-        <div class="container">
-            <h2>Education</h2>
-            
-            <div class="education-item">
-                <h3>Master of Technology (M.Tech) in Electronics Engineering</h3>
-                <p class="specialization">Major: Internet of Things</p>
-                <p class="institution">Veermata Jijabai Technical Institute, Mumbai</p>
-                <p class="grade">CPI: 9.05 | 2023</p>
-            </div>
-            
-            <div class="education-item">
-                <h3>Bachelor of Technology (B.Tech)</h3>
-                <p class="specialization">Electronics and Telecommunication Engineering</p>
-                <p class="institution">Vishwakarma Institute of Technology, Pune</p>
-                <p class="grade">CPI: 7.69 | 2021</p>
-            </div>
-            
-            <div class="education-item">
-                <h3>Global Internship Program</h3>
-                <p class="institution">Nanyang Technology University, Singapore</p>
-                <p class="duration">One-month intensive program | 2017</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills -->
     <section class="resume-section">
         <div class="container">
-            <h2>Technical Skills</h2>
-            
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h3>Programming Languages & Frameworks</h3>
-                    <div class="skill-list">
-                        <div class="skill-item"><i class="fab fa-python"></i> Python</div>
-                        <div class="skill-item"><i class="fab fa-java"></i> Java</div>
-                        <div class="skill-item"><i class="fas fa-code"></i> C++</div>
-                        <div class="skill-item"><i class="fab fa-js"></i> JavaScript</div>
-                        <div class="skill-item"><i class="fab fa-html5"></i> HTML5</div>
-                        <div class="skill-item"><i class="fab fa-css3-alt"></i> CSS3</div>
+            <div class="resume-container">
+                <h2 class="section-title">Education</h2>
+                
+                <div class="education-item">
+                    <div class="education-header">
+                        <h3 class="education-title">Master of Technology (M.Tech) in Electronics Engineering</h3>
+                        <p class="education-date">2021 - 2023</p>
+                    </div>
+                    <p class="education-institution">Veermata Jijabai Technical Institute, Mumbai</p>
+                    <div class="education-details">
+                        <p><strong>Major:</strong> Internet of Things</p>
+                        <p><strong>CPI:</strong> 9.05</p>
+                        <p>Specialized in embedded systems and IoT solutions, with a focus on cloud connectivity and data analytics.</p>
                     </div>
                 </div>
                 
-                <div class="skill-category">
-                    <h3>Frameworks & Tools</h3>
-                    <div class="skill-list">
-                        <div class="skill-item"><i class="fas fa-server"></i> FastAPI</div>
-                        <div class="skill-item"><i class="fab fa-react"></i> React</div>
-                        <div class="skill-item"><i class="fab fa-salesforce"></i> Lightning Web Components</div>
-                        <div class="skill-item"><i class="fas fa-database"></i> SQL, SOQL, NoSQL</div>
+                <div class="education-item">
+                    <div class="education-header">
+                        <h3 class="education-title">Bachelor of Technology (B.Tech)</h3>
+                        <p class="education-date">2017 - 2021</p>
+                    </div>
+                    <p class="education-institution">Vishwakarma Institute of Technology, Pune</p>
+                    <div class="education-details">
+                        <p><strong>Major:</strong> Electronics and Telecommunication Engineering</p>
+                        <p><strong>CPI:</strong> 7.69</p>
+                        <p>Developed foundation in electronics systems design, digital communications, and programming.</p>
                     </div>
                 </div>
                 
-                <div class="skill-category">
-                    <h3>Cloud & Infrastructure</h3>
-                    <div class="skill-list">
-                        <div class="skill-item"><i class="fab fa-aws"></i> AWS</div>
-                        <div class="skill-item"><i class="fab fa-microsoft"></i> Azure</div>
-                        <div class="skill-item"><i class="fab fa-google"></i> Google Cloud Platform</div>
-                        <div class="skill-item"><i class="fab fa-docker"></i> Docker</div>
-                        <div class="skill-item"><i class="fas fa-dharmachakra"></i> Kubernetes</div>
+                <div class="education-item">
+                    <div class="education-header">
+                        <h3 class="education-title">Global Internship Program</h3>
+                        <p class="education-date">2017</p>
+                    </div>
+                    <p class="education-institution">Nanyang Technology University, Singapore</p>
+                    <div class="education-details">
+                        <p>One-month intensive program focusing on emerging technologies and global engineering practices.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Certifications -->
-    <section class="resume-section bg-light">
+    <section class="resume-section">
         <div class="container">
-            <h2>Certifications & Activities</h2>
-            
-            <div class="certifications-list">
-                <div class="certification-item">
-                    <i class="fas fa-certificate"></i>
-                    <div class="certification-content">
-                        <h3>Salesforce Certified Platform Developer I</h3>
-                    </div>
-                </div>
+            <div class="resume-container">
+                <h2 class="section-title">Skills</h2>
                 
-                <div class="certification-item">
-                    <i class="fas fa-certificate"></i>
-                    <div class="certification-content">
-                        <h3>MSME Business Forum: Cybersecurity and Digital Forensics</h3>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3>AI Engineering</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Prompt Engineering</span>
+                            <span class="skill-tag">LangChain</span>
+                            <span class="skill-tag">Vector Databases</span>
+                            <span class="skill-tag">RAG Systems</span>
+                            <span class="skill-tag">LLM Fine-tuning</span>
+                            <span class="skill-tag">Azure OpenAI</span>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="certification-item">
-                    <i class="fas fa-certificate"></i>
-                    <div class="certification-content">
-                        <h3>The Complete Web Development Bootcamp</h3>
+                    
+                    <div class="skill-category">
+                        <h3>Programming</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">C++</span>
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">SOQL</span>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="certification-item">
-                    <i class="fas fa-users"></i>
-                    <div class="certification-content">
-                        <h3>Organized and participated in Philips Dreamforce Event</h3>
+                    
+                    <div class="skill-category">
+                        <h3>Frameworks & Tools</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">FastAPI</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Lightning Components</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Azure DevOps</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Kubernetes</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Cloud Services</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Azure</span>
+                            <span class="skill-tag">GCP</span>
+                            <span class="skill-tag">Microservices</span>
+                            <span class="skill-tag">Serverless</span>
+                            <span class="skill-tag">CI/CD</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>...</footer>
+    <section class="resume-section">
+        <div class="container">
+            <div class="resume-container">
+                <h2 class="section-title">Certifications</h2>
+                
+                <div class="certifications-container">
+                    <div class="certification-item">
+                        <div class="certification-icon">
+                            <i class="fab fa-salesforce"></i>
+                        </div>
+                        <div class="certification-content">
+                            <h3>Salesforce Certified Platform Developer I</h3>
+                            <p>Validates expertise in developing custom applications on the Salesforce platform.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="certification-item">
+                        <div class="certification-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="certification-content">
+                            <h3>MSME Business Forum: Cybersecurity and Digital Forensics</h3>
+                            <p>Specialized training in cybersecurity principles and digital forensics methodologies.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="certification-item">
+                        <div class="certification-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="certification-content">
+                            <h3>The Complete Web Development Bootcamp</h3>
+                            <p>Comprehensive training in modern web development technologies and frameworks.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <script src="assets/js/script.js"></script>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>© 2025 Stuti Srivastava. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="resume.html">Resume</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/stutisri27" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/stutisrivastava" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:stutisri27@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.querySelector('i').classList.toggle('fa-bars');
+            menuToggle.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Check for saved theme preference or use the system preference
+        const currentTheme = localStorage.getItem('theme') || 
+                            (prefersDarkScheme.matches ? 'dark' : 'light');
+        
+        // Set initial theme
+        if (currentTheme === 'dark') {
+            document.body.classList.add('dark-theme');
+            themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            
+            // Update icon
+            const icon = themeToggle.querySelector('i');
+            if (document.body.classList.contains('dark-theme')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
 </body>
 </html>
