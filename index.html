@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stuti Srivastava - IT DevOps Engineer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Stuti Srivastava - DevOps & AI Engineer</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Embedded Styles -->
     <style>
         :root {
             /* Light theme (default) */
@@ -12,22 +18,28 @@
             --bg-secondary: #f8f9fa;
             --text-primary: #212529;
             --text-secondary: #6c757d;
-            --accent-color: #4fc3f7;
-            --accent-hover: #0b7dda;
+            --accent-color: #4fc3f7; /* Light Blue */
+            --accent-hover: #03a9f4; /* Slightly darker blue */
             --card-bg: #ffffff;
-            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            --border-color: #e9ecef;
-            --transition: all 0.3s ease;
+            --card-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+            --border-color: #dee2e6;
+            --transition: all 0.3s ease-in-out;
+            --gradient-start: var(--text-primary);
+            --gradient-end: var(--accent-color);
+            --accent-color-transparent: rgba(79, 195, 247, 0.2); /* For glow effects */
         }
 
         .dark-theme {
-            --bg-primary: #212529;
-            --bg-secondary: #343a40;
+            --bg-primary: #1a1a1a; /* Darker background */
+            --bg-secondary: #2c2c2c; /* Slightly lighter dark */
             --text-primary: #f8f9fa;
             --text-secondary: #adb5bd;
-            --card-bg: #2b3035;
-            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            --card-bg: #252525; /* Dark card */
+            --card-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
             --border-color: #495057;
+            --gradient-start: var(--text-primary);
+            --gradient-end: var(--accent-color);
+            --accent-color-transparent: rgba(79, 195, 247, 0.3); /* Adjusted glow for dark */
         }
 
         * {
@@ -37,22 +49,27 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px; /* Offset for fixed header */
+        }
+
         body {
             background-color: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
-            transition: var(--transition);
+            line-height: 1.7;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Only transition body colors */
             overflow-x: hidden;
         }
 
         a {
             text-decoration: none;
-            color: var(--text-primary);
-            transition: var(--transition);
+            color: var(--accent-color);
+            transition: color 0.3s ease; /* Only transition color */
         }
 
         a:hover {
-            color: var(--accent-color);
+            color: var(--accent-hover);
         }
 
         .container {
@@ -62,16 +79,23 @@
             padding: 0 15px;
         }
 
+        /* Accessibility */
+        :focus-visible {
+            outline: 3px solid var(--accent-color); /* Thicker outline */
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
         /* Header Styles */
         header {
             background-color: var(--bg-primary);
-            padding: 20px 0;
+            padding: 18px 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         nav {
@@ -81,38 +105,48 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
         }
 
         .logo a {
             color: var(--text-primary);
+            transition: color 0.3s ease;
         }
+        .logo a:hover {
+             color: var(--accent-color);
+        }
+
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem; /* Increased gap */
         }
 
         .nav-links a {
             font-weight: 500;
+            color: var(--text-secondary);
             position: relative;
-            padding: 5px 0;
+            padding: 8px 0; /* Added padding */
+            transition: color 0.3s ease;
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
             width: 0;
-            height: 2px;
+            height: 2.5px; /* Slightly thicker */
             bottom: 0;
             left: 0;
             background-color: var(--accent-color);
             transition: width 0.3s ease;
+            border-radius: 1px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
         }
 
         .nav-links a:hover::after,
@@ -120,130 +154,185 @@
             width: 100%;
         }
 
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
         .theme-toggle {
             background: none;
             border: none;
             color: var(--text-primary);
             cursor: pointer;
-            font-size: 1.2rem;
-            padding: 5px;
-            margin-left: 20px;
+            font-size: 1.3rem; /* Slightly larger */
+            padding: 8px;
+            border-radius: 50%;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-        
+        .theme-toggle:hover {
+            background-color: var(--bg-secondary);
+        }
+
         .menu-toggle {
             display: none;
             background: none;
             border: none;
             color: var(--text-primary);
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
+            padding: 8px;
         }
 
         /* Hero Section */
         .hero {
             display: flex;
             min-height: 100vh;
-            padding-top: 100px;
+            padding-top: 120px; /* Adjusted padding */
             align-items: center;
+            overflow: hidden; /* Prevent animation overflow */
+            background-color: var(--bg-primary); /* Ensure bg color transition */
+            transition: background-color 0.3s ease;
+        }
+        /* Hero inner container for flex layout */
+        .hero > .container > div {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
         }
 
         .hero-content {
             flex: 1;
-            max-width: 600px;
+            max-width: 650px; /* Slightly increased max-width */
+            padding-right: 30px; /* Add some space */
+            animation: slideInLeft 0.8s ease-out forwards;
         }
 
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+
         .hero h1 {
-            font-size: 4rem;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, var(--text-primary), var(--accent-color));
+            font-size: clamp(2.8rem, 6vw, 4.5rem); /* Responsive font size */
+            line-height: 1.15;
+            margin-bottom: 1.8rem;
+            font-weight: 700;
+            /* Apply transition to gradient (difficult, fallback to text color) */
+            color: var(--text-primary); /* Fallback color */
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-fill-color: transparent; /* Standard property */
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.25rem); /* Responsive font size */
             color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 550px;
+            margin-bottom: 2.5rem;
+            max-width: 580px; /* Adjusted max-width */
+            transition: color 0.3s ease;
         }
 
         .hero-image {
-            flex: 1;
+            flex: 0.8; /* Slightly smaller image container */
             display: flex;
             justify-content: center;
             align-items: center;
+            animation: fadeInRight 0.8s 0.2s ease-out forwards; /* Delay animation */
+             opacity: 0; /* Start hidden for animation */
+        }
+
+         @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         .hero-image img {
-            max-width: 90%;
-            border-radius: 20px;
+            max-width: 100%;
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 25px; /* Softer edges */
             box-shadow: var(--card-shadow);
-            animation: float 6s ease-in-out infinite;
+            animation: float 6s ease-in-out infinite alternate; /* Alternate direction */
+            border: 3px solid var(--bg-secondary); /* Subtle border */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         @keyframes float {
             0% {
                 transform: translateY(0);
             }
-            50% {
-                transform: translateY(-20px);
-            }
-            100% {
-                transform: translateY(0);
+            100% { /* Changed from 50% to 100% for alternate */
+                transform: translateY(-15px); /* Reduced float distance */
             }
         }
 
         .tech-stack {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem; /* Reduced gap */
             flex-wrap: wrap;
-            margin: 2rem 0;
+            margin: 2.5rem 0;
         }
 
         .tech-badge {
             background-color: var(--bg-secondary);
             color: var(--text-primary);
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            font-size: 0.9rem;
+            padding: 0.6rem 1.2rem; /* Adjusted padding */
+            border-radius: 50px; /* More rounded */
+            font-size: 0.85rem;
             font-weight: 500;
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: var(--transition);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            border: 1px solid var(--border-color); /* Subtle border */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         .tech-badge:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--card-shadow);
+            transform: translateY(-4px) scale(1.03); /* Enhanced hover */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background-color: var(--accent-color);
+            color: white;
+             border-color: var(--accent-hover);
         }
+         .tech-badge:hover i {
+            color: white; /* Make icon white on hover */
+         }
 
         .tech-badge i {
             color: var(--accent-color);
+            transition: color 0.3s ease;
         }
 
         /* Buttons */
+         .cta-buttons {
+            margin-bottom: 2rem; /* Space before social links */
+        }
+
         .btn {
             display: inline-block;
             background-color: var(--accent-color);
             color: white;
-            padding: 12px 25px;
-            border-radius: 8px;
+            padding: 14px 30px; /* Slightly larger */
+            border-radius: 10px; /* Softer radius */
             font-weight: 600;
             margin-right: 15px;
-            transition: var(--transition);
-            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            border: 2px solid transparent; /* For outline transition */
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 1rem;
+            box-shadow: 0 4px 10px rgba(79, 195, 247, 0.3); /* Accent color shadow */
+            margin-bottom: 1rem; /* Spacing for stacking */
+            text-align: center;
         }
 
         .btn:hover {
             background-color: var(--accent-hover);
             transform: translateY(-3px);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 15px rgba(3, 169, 244, 0.4);
             color: white;
         }
 
@@ -258,184 +347,244 @@
             background-color: var(--bg-secondary);
             color: var(--text-primary);
             border-color: var(--accent-color);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transform: translateY(-3px); /* Add transform on hover */
         }
 
         /* Social Links */
         .social-links {
             display: flex;
-            gap: 1.5rem;
-            margin-top: 2rem;
+            gap: 1.8rem; /* Increased gap */
+            margin-top: 2.5rem; /* Adjusted margin */
         }
 
         .social-links a {
-            font-size: 1.5rem;
+            font-size: 1.6rem; /* Slightly larger */
             color: var(--text-secondary);
-            transition: var(--transition);
+            transition: transform 0.3s ease, color 0.3s ease;
+            display: inline-block; /* Needed for transform */
         }
 
         .social-links a:hover {
             color: var(--accent-color);
-            transform: translateY(-3px);
+            transform: translateY(-4px) scale(1.1); /* Enhanced hover */
         }
 
-        /* Featured Project Section */
-        .featured-project {
+        /* Section Styling */
+        section {
             padding: 100px 0;
-            background-color: var(--bg-secondary);
+            transition: background-color 0.3s ease;
         }
+        section:nth-of-type(even) { /* Style even sections */
+             background-color: var(--bg-secondary);
+             border-top: 1px solid var(--border-color);
+             border-bottom: 1px solid var(--border-color);
+             transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+         /* Remove border from last section if it's even */
+         main section:last-of-type:nth-of-type(even) {
+             border-bottom: none;
+         }
+          /* Remove border from section after hero if it's even */
+         .hero + section:nth-of-type(even) {
+             border-top: none;
+         }
+
 
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
-            font-size: 2.5rem;
+            margin-bottom: 60px; /* Increased margin */
+            font-size: 2.8rem; /* Slightly larger */
+            font-weight: 700;
             color: var(--text-primary);
             position: relative;
+            transition: color 0.3s ease;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
-            width: 60px;
-            height: 3px;
+            width: 70px; /* Longer line */
+            height: 4px; /* Thicker line */
             background-color: var(--accent-color);
-            bottom: -10px;
+            bottom: -15px; /* Further down */
             left: 50%;
             transform: translateX(-50%);
+            border-radius: 2px;
+            transition: background-color 0.3s ease;
         }
 
+        /* Featured Project Card */
         .project-card {
             background-color: var(--card-bg);
-            border-radius: 16px;
+            border-radius: 20px; /* More rounded */
             overflow: hidden;
             box-shadow: var(--card-shadow);
-            transition: var(--transition);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
             margin-bottom: 30px;
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Stack content */
+            border: 1px solid var(--border-color); /* Subtle border */
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-12px); /* Increased lift */
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.12); /* Enhanced shadow */
         }
 
         .project-img {
             overflow: hidden;
-            height: 300px;
+            height: 350px; /* Increased height */
+            position: relative; /* For potential overlay effects */
         }
 
         .project-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother zoom */
         }
 
         .project-card:hover .project-img img {
-            transform: scale(1.05);
+            transform: scale(1.08); /* Slightly more zoom */
         }
 
         .project-content {
-            padding: 30px;
+            padding: 35px; /* Increased padding */
+            flex-grow: 1; /* Allow content to grow */
+            display: flex;
+            flex-direction: column;
         }
 
         .project-content h3 {
-            margin-bottom: 15px;
-            font-size: 1.5rem;
+            margin-bottom: 18px; /* Adjusted margin */
+            font-size: 1.7rem; /* Slightly larger */
             color: var(--text-primary);
+            font-weight: 600;
+            transition: color 0.3s ease;
         }
 
         .project-content p {
             color: var(--text-secondary);
-            margin-bottom: 20px;
+            margin-bottom: 25px; /* Adjusted margin */
+            flex-grow: 1; /* Push tags/button down */
+            transition: color 0.3s ease;
         }
 
         .project-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 25px; /* Adjusted margin */
         }
 
         .project-tag {
-            background-color: var(--bg-secondary);
-            color: var(--text-primary);
-            padding: 5px 12px;
+            background-color: var(--accent-color); /* Use accent color */
+            color: white; /* White text */
+            padding: 6px 15px; /* Adjusted padding */
             border-radius: 20px;
             font-size: 0.8rem;
+            font-weight: 500; /* Bolder */
+             transition: background-color 0.3s ease;
         }
 
         /* Skills Section */
-        .skills {
-            padding: 100px 0;
-        }
-
         .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+            gap: 35px; /* Increased gap */
         }
 
         .skill-category {
             background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 16px;
+            padding: 35px; /* Increased padding */
+            border-radius: 20px; /* More rounded */
             box-shadow: var(--card-shadow);
-            transition: var(--transition);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+             border: 1px solid var(--border-color);
         }
 
         .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px); /* Lift effect */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
         }
 
         .skill-category h3 {
             color: var(--text-primary);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
+            margin-bottom: 25px; /* Increased margin */
+            padding-bottom: 15px; /* Increased padding */
             border-bottom: 2px solid var(--border-color);
-            font-size: 1.2rem;
+            font-size: 1.4rem; /* Slightly larger */
+            font-weight: 600;
+            display: flex; /* Align icon */
+            align-items: center;
+            gap: 10px; /* Space between icon and text */
+            transition: color 0.3s ease, border-color 0.3s ease;
         }
+         .skill-category h3 i {
+            color: var(--accent-color); /* Icon color */
+             font-size: 1.2em; /* Make icon slightly larger */
+             transition: color 0.3s ease;
+         }
 
         .skill-list {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            /* Let items flow naturally, adjust columns via container */
+            gap: 18px; /* Increased gap */
         }
 
         .skill-item {
             display: flex;
             align-items: center;
             color: var(--text-secondary);
+            font-size: 0.95rem; /* Slightly larger */
+            transition: color 0.3s ease;
+        }
+        .skill-item:hover {
+            color: var(--text-primary); /* Darken text on hover */
         }
 
         .skill-item i {
-            margin-right: 10px;
+            margin-right: 12px; /* Increased spacing */
             color: var(--accent-color);
+             width: 20px; /* Fixed width for alignment */
+            text-align: center;
+            font-size: 1.1em; /* Slightly larger icons */
+             transition: color 0.3s ease;
         }
 
         /* Footer */
         footer {
             background-color: var(--bg-secondary);
             color: var(--text-secondary);
-            padding: 40px 0;
+            padding: 50px 0; /* Increased padding */
             text-align: center;
+             border-top: 1px solid var(--border-color);
+             transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
         .footer-content {
             max-width: 600px;
             margin: 0 auto;
         }
+        .footer-content p {
+            margin-bottom: 20px; /* Space below copyright */
+             font-size: 0.9rem;
+             transition: color 0.3s ease;
+        }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin: 20px 0;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            gap: 25px; /* Adjusted gap */
+            margin: 25px 0; /* Adjusted margin */
         }
 
         .footer-links a {
             color: var(--text-secondary);
-            transition: var(--transition);
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
         .footer-links a:hover {
@@ -443,66 +592,124 @@
         }
 
         .footer-social {
-            margin: 20px 0;
+            margin: 30px 0 20px; /* Adjusted margin */
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 25px; /* Increased gap */
         }
 
         .footer-social a {
             color: var(--text-secondary);
-            font-size: 1.2rem;
-            transition: var(--transition);
+            font-size: 1.4rem; /* Slightly larger */
+            transition: transform 0.3s ease, color 0.3s ease;
+            display: inline-block; /* Needed for transform */
         }
 
         .footer-social a:hover {
             color: var(--accent-color);
-            transform: translateY(-3px);
+            transform: translateY(-4px) scale(1.1); /* Enhanced hover */
         }
 
         /* Responsive Styles */
         @media screen and (max-width: 992px) {
-            .hero h1 {
-                font-size: 3rem;
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 100px;
+                 min-height: auto; /* Adjust height */
+                 padding-bottom: 60px;
             }
-            .hero-image {
-                display: none;
-            }
+             .hero > .container > div {
+                 flex-direction: column; /* Stack content and image */
+             }
             .hero-content {
                 max-width: 100%;
+                padding-right: 0;
+                margin-bottom: 40px; /* Space between text and image */
+                 animation: none; /* Disable animation on smaller screens if desired */
+                 order: 2; /* Show text below image if desired */
             }
+            .hero p {
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-image {
+                flex: 1; /* Allow it to take space */
+                 max-width: 450px; /* Control max size */
+                 margin: 0 auto 40px; /* Center it and add bottom margin */
+                 animation: none; /* Disable animation */
+                 order: 1; /* Show image above text */
+            }
+             .hero-image img {
+                 max-width: 100%;
+            }
+            .skills-container {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust minmax */
+            }
+             .project-card {
+                 /* No change needed here, already flex column */
+             }
         }
 
         @media screen and (max-width: 768px) {
             .menu-toggle {
                 display: block;
+                z-index: 1001; /* Ensure it's above nav links */
             }
+             .nav-buttons {
+                 gap: 0.5rem; /* Reduce gap on mobile */
+             }
             .nav-links {
                 position: fixed;
-                top: 80px;
-                left: -100%;
+                top: 0; /* Cover full screen */
+                left: -100%; /* Start off-screen */
                 width: 100%;
-                height: calc(100vh - 80px);
+                height: 100vh;
                 background-color: var(--bg-primary);
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                transition: var(--transition);
-                gap: 2rem;
+                transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1), background-color 0.3s ease; /* Smoother transition */
+                gap: 2.5rem;
                 padding: 2rem 0;
+                z-index: 999; /* Below menu toggle */
+                box-shadow: 5px 0 15px rgba(0,0,0,0.1); /* Add shadow when open */
+                 overflow-y: auto; /* Allow scrolling if needed */
             }
             .nav-links.active {
                 left: 0;
             }
-            .hero h1 {
-                font-size: 2.5rem;
+             .nav-links a {
+                 font-size: 1.2rem; /* Larger font size for mobile menu */
             }
+             .hero h1 {
+                 font-size: clamp(2.2rem, 8vw, 3rem); /* Adjust hero title size */
+            }
+             .hero p {
+                 font-size: clamp(1rem, 4vw, 1.1rem); /* Adjust hero text size */
+             }
             .section-title {
-                font-size: 2rem;
+                font-size: 2.3rem; /* Adjust section title size */
             }
-            .skills-container {
-                grid-template-columns: 1fr;
+             .project-img {
+                 height: 250px; /* Reduce image height */
+             }
+             .project-content {
+                 padding: 25px; /* Reduce padding */
+             }
+             .skills-container {
+                 grid-template-columns: 1fr; /* Stack skills */
+             }
+             .skill-list {
+                /* grid-template-columns: 1fr; Let items stack naturally */
             }
+             .footer-links {
+                 gap: 15px 25px; /* Adjust gap for wrapping */
+             }
+             .footer-social {
+                 gap: 20px;
+             }
         }
     </style>
 </head>
@@ -513,8 +720,8 @@
                 <div class="logo">
                     <a href="index.html">Stuti Srivastava</a>
                 </div>
-                <ul class="nav-links">
-                    <li><a href="index.html" class="active">Home</a></li>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="resume.html">Resume</a></li>
                     <li><a href="projects.html">Projects</a></li>
@@ -522,121 +729,130 @@
                 </ul>
                 <div class="nav-buttons">
                     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-moon"></i> <!-- Default to moon (light mode) -->
                     </button>
-                    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
-                        <i class="fas fa-bars"></i>
+                    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                        <i class="fas fa-bars"></i> <!-- Default to bars -->
                     </button>
                 </div>
             </nav>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>DevOps & AI Engineer</h1>
-                <p>Specializing in microservices architecture, generative AI solutions, and cloud infrastructure.</p>
-                
-                <div class="tech-stack">
-                    <div class="tech-badge"><i class="fab fa-python"></i> Python</div>
-                    <div class="tech-badge"><i class="fas fa-brain"></i> LLMs</div>
-                    <div class="tech-badge"><i class="fas fa-project-diagram"></i> LangChain</div>
-                    <div class="tech-badge"><i class="fas fa-database"></i> VectorDBs</div>
-                    <div class="tech-badge"><i class="fab fa-docker"></i> Docker</div>
-                    <div class="tech-badge"><i class="fas fa-cloud"></i> Cloud</div>
-                </div>
-                
-                <div class="cta-buttons">
-                    <a href="projects.html" class="btn">View Projects</a>
-                    <a href="resume.html" class="btn btn-outline">Resume</a>
-                </div>
+    <main>
+        <section class="hero" id="home">
+            <div class="container">
+                 <div> {/* Wrapper for flex layout */}
+                    <div class="hero-content">
+                        <h1>DevOps & AI Engineer</h1>
+                        <p>Bridging the gap between efficient cloud infrastructure and intelligent AI solutions. Specializing in microservices, generative AI, and robust DevOps practices.</p>
 
-                <div class="social-links">
-                    <a href="https://github.com/stutisri27" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com/in/stutisrivastava" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="mailto:stutisri27@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="https://placehold.co/600x400/4fc3f7/ffffff?text=Stuti+Srivastava" alt="Profile Image">
-            </div>
-        </div>
-    </section>
+                        <div class="tech-stack">
+                            <div class="tech-badge"><i class="fab fa-python"></i> Python</div>
+                            <div class="tech-badge"><i class="fas fa-brain"></i> GenAI & LLMs</div>
+                            <div class="tech-badge"><i class="fas fa-link"></i> LangChain</div> {/* Updated Icon */}
+                            <div class="tech-badge"><i class="fas fa-database"></i> Vector DBs</div>
+                            <div class="tech-badge"><i class="fab fa-docker"></i> Docker & K8s</div>
+                            <div class="tech-badge"><i class="fas fa-cloud"></i> Cloud (Azure/AWS)</div>
+                        </div>
 
-    <section class="featured-project">
-        <div class="container">
-            <h2 class="section-title">Featured Project</h2>
-            <div class="project-card">
-                <div class="project-img">
-                    <img src="https://placehold.co/1200x600/4fc3f7/ffffff?text=Salesforce+LLM+Integration" alt="Salesforce LLM Integration Project">
-                </div>
-                <div class="project-content">
-                    <h3>Salesforce RAG-Powered Assistant</h3>
-                    <p>An AI-powered solution that enhances Salesforce CRM with Retrieval Augmented Generation, enabling natural language processing of business operations with accurate, context-aware responses based on enterprise knowledge.</p>
-                    
-                    <div class="project-tags">
-                        <span class="project-tag">Python</span>
-                        <span class="project-tag">LangChain</span>
-                        <span class="project-tag">RAG</span>
-                        <span class="project-tag">Vector Databases</span>
-                        <span class="project-tag">Azure OpenAI</span>
-                        <span class="project-tag">Prompt Engineering</span>
-                    </div>
-                    
-                    <a href="projects/salesforce-llm.html" class="btn">View Details</a>
-                </div>
-            </div>
-        </div>
-    </section>
+                        <div class="cta-buttons">
+                            <a href="projects.html" class="btn">Explore Projects</a>
+                            <a href="resume.html" class="btn btn-outline">View Resume</a>
+                        </div>
 
-    <section class="skills">
-        <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h3>Generative AI</h3>
-                    <div class="skill-list">
-                        <div class="skill-item"><i class="fas fa-brain"></i> Prompt Engineering</div>
-                        <div class="skill-item"><i class="fas fa-project-diagram"></i> LangChain</div>
-                        <div class="skill-item"><i class="fas fa-database"></i> Vector Databases</div>
-                        <div class="skill-item"><i class="fas fa-search"></i> RAG Systems</div>
-                        <div class="skill-item"><i class="fas fa-cog"></i> LLM Fine-tuning</div>
-                        <div class="skill-item"><i class="fas fa-file-code"></i> Python AI Libraries</div>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Cloud & DevOps</h3>
-                    <div class="skill-list">
-                        <div class="skill-item"><i class="fab fa-docker"></i> Docker</div>
-                        <div class="skill-item"><i class="fas fa-dharmachakra"></i> Kubernetes</div>
-                        <div class="skill-item"><i class="fab fa-aws"></i> AWS</div>
-                        <div class="skill-item"><i class="fab fa-microsoft"></i> Azure</div>
-                        <div class="skill-item"><i class="fas fa-code-branch"></i> CI/CD</div>
-                        <div class="skill-item"><i class="fas fa-server"></i> Microservices</div>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Development</h3>
-                    <div class="skill-list">
-                        <div class="skill-item"><i class="fab fa-python"></i> Python</div>
-                        <div class="skill-item"><i class="fas fa-server"></i> FastAPI</div>
-                        <div class="skill-item"><i class="fab fa-js"></i> JavaScript</div>
-                        <div class="skill-item"><i class="fab fa-salesforce"></i> Salesforce</div>
-                        <div class="skill-item"><i class="fas fa-database"></i> SQL/SOQL</div>
-                        <div class="skill-item"><i class="fas fa-terminal"></i> MLOps</div>
+                        <div class="social-links">
+                            <a href="https://github.com/stutisri27" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+                            <a href="https://linkedin.com/in/stutisrivastava" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+                            <a href="mailto:stutisri27@gmail.com" aria-label="Send Email"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    <div class="hero-image">
+                        <!-- IMPORTANT: Replace this placeholder with your actual image -->
+                        <img src="https://picsum.photos/seed/stutiportfolio/550/400" alt="Stuti Srivastava professional portrait placeholder">
+                        <!-- Example: <img src="assets/images/stuti_profile.jpg" alt="Stuti Srivastava"> -->
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section class="featured-project" id="featured-project"> {/* Use section:nth-of-type(even) styling */}
+            <div class="container">
+                <h2 class="section-title">Featured Project</h2>
+                <div class="project-card">
+                    <div class="project-img">
+                         <!-- IMPORTANT: Replace this placeholder with your actual project image -->
+                        <img src="https://picsum.photos/seed/salesforcerag/1200/600" alt="Abstract representation of Salesforce and AI integration">
+                        <!-- Example: <img src="assets/images/project_salesforce_rag.png" alt="Salesforce RAG Project Screenshot"> -->
+                    </div>
+                    <div class="project-content">
+                        <h3>Salesforce RAG-Powered Assistant</h3>
+                        <p>Developed an AI-powered assistant enhancing Salesforce CRM capabilities using Retrieval Augmented Generation (RAG). This system allows users to interact with enterprise data via natural language, providing accurate, context-aware responses drawn directly from internal knowledge bases.</p>
+
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">LangChain</span>
+                            <span class="project-tag">RAG</span>
+                            <span class="project-tag">Vector Databases</span>
+                            <span class="project-tag">Azure OpenAI</span>
+                            <span class="project-tag">FastAPI</span>
+                            <span class="project-tag">Prompt Engineering</span>
+                        </div>
+
+                        {/* Link to projects page specific section if possible, e.g., projects.html#salesforce-rag */}
+                        <a href="projects.html" class="btn">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="skills" id="skills"> {/* This will be section 3, odd */}
+            <div class="container">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                         <h3><i class="fas fa-robot"></i> Generative AI</h3>
+                        <div class="skill-list">
+                            <div class="skill-item"><i class="fas fa-pen-nib"></i> Prompt Engineering</div>
+                            <div class="skill-item"><i class="fas fa-link"></i> LangChain Framework</div>
+                            <div class="skill-item"><i class="fas fa-database"></i> Vector Databases (e.g., ChromaDB, FAISS)</div>
+                            <div class="skill-item"><i class="fas fa-search-plus"></i> RAG Systems</div>
+                            <div class="skill-item"><i class="fas fa-cogs"></i> LLM Fine-tuning & Evaluation</div>
+                            <div class="skill-item"><i class="fab fa-python"></i> Python AI Libraries (Transformers, PyTorch)</div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                         <h3><i class="fas fa-cloud"></i> Cloud & DevOps</h3>
+                        <div class="skill-list">
+                            <div class="skill-item"><i class="fab fa-docker"></i> Docker</div>
+                            <div class="skill-item"><i class="fas fa-dharmachakra"></i> Kubernetes (K8s)</div>
+                            <div class="skill-item"><i class="fab fa-aws"></i> AWS Services</div>
+                            <div class="skill-item"><i class="fab fa-microsoft"></i> Azure Services (incl. OpenAI)</div>
+                            <div class="skill-item"><i class="fas fa-code-branch"></i> CI/CD (Azure DevOps, GitHub Actions)</div>
+                            <div class="skill-item"><i class="fas fa-server"></i> Microservices Architecture</div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3><i class="fas fa-code"></i> Development</h3>
+                        <div class="skill-list">
+                            <div class="skill-item"><i class="fab fa-python"></i> Python (FastAPI, Flask)</div>
+                            <div class="skill-item"><i class="fab fa-js"></i> JavaScript (React, LWC)</div>
+                            <div class="skill-item"><i class="fab fa-salesforce"></i> Salesforce (Apex, SOQL, LWC)</div>
+                            <div class="skill-item"><i class="fas fa-database"></i> Databases (SQL, NoSQL)</div>
+                            <div class="skill-item"><i class="fas fa-terminal"></i> MLOps Principles</div>
+                             <div class="skill-item"><i class="fas fa-vial"></i> Testing Frameworks (Pytest)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="container">
             <div class="footer-content">
-                <p>© 2025 Stuti Srivastava. All rights reserved.</p>
                 <div class="footer-links">
                     <a href="index.html">Home</a>
                     <a href="about.html">About</a>
@@ -644,66 +860,128 @@
                     <a href="projects.html">Projects</a>
                     <a href="contact.html">Contact</a>
                 </div>
-                <div class="footer-social">
-                    <a href="https://github.com/stutisri27" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com/in/stutisrivastava" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="mailto:stutisri27@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                 <div class="footer-social">
+                    <a href="https://github.com/stutisri27" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/stutisrivastava" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:stutisri27@gmail.com" aria-label="Send Email"><i class="fas fa-envelope"></i></a>
                 </div>
+                 <p>© <span id="current-year"></span> Stuti Srivastava. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
+        // --- DOM Elements ---
         const menuToggle = document.getElementById('menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        
+        const navLinks = document.getElementById('nav-links');
+        const themeToggle = document.getElementById('theme-toggle');
+        const currentYearSpan = document.getElementById('current-year');
+        const navLinksElements = document.querySelectorAll('.nav-links a');
+
+        // --- Mobile Menu ---
         menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
             navLinks.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', String(!isExpanded)); // Use String() for boolean attribute
             menuToggle.querySelector('i').classList.toggle('fa-bars');
             menuToggle.querySelector('i').classList.toggle('fa-times');
         });
 
-        // Theme toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-        
-        // Check for saved theme preference or use the system preference
-        const currentTheme = localStorage.getItem('theme') || 
-                            (prefersDarkScheme.matches ? 'dark' : 'light');
-        
-        // Set initial theme
-        if (currentTheme === 'dark') {
-            document.body.classList.add('dark-theme');
-            themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
-        }
-        
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-theme');
-            
-            // Update icon
-            const icon = themeToggle.querySelector('i');
-            if (document.body.classList.contains('dark-theme')) {
-                icon.classList.replace('fa-moon', 'fa-sun');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                icon.classList.replace('fa-sun', 'fa-moon');
-                localStorage.setItem('theme', 'light');
-            }
-        });
-        
-        // Set active navigation link
-        document.addEventListener('DOMContentLoaded', () => {
-            const currentLocation = location.pathname;
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            navLinks.forEach(link => {
-                const linkPath = new URL(link.href).pathname;
-                if (currentLocation === linkPath || 
-                    (currentLocation === '/' && linkPath.endsWith('index.html'))) {
-                    link.classList.add('active');
+        // Close menu when a link is clicked
+        navLinksElements.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
                 }
             });
+        });
+
+        // --- Theme Toggle ---
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        const applyTheme = (theme) => {
+            const icon = themeToggle.querySelector('i');
+            if (theme === 'dark') {
+                document.body.classList.add('dark-theme');
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                document.body.classList.remove('dark-theme');
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        };
+
+        const setThemePreference = (theme) => {
+            applyTheme(theme);
+            localStorage.setItem('theme', theme);
+        };
+
+        // Load initial theme
+        const savedTheme = localStorage.getItem('theme');
+        const initialTheme = savedTheme || (prefersDarkScheme.matches ? 'dark' : 'light');
+        applyTheme(initialTheme); // Apply theme without saving initially if relying on system pref
+
+        // Theme toggle button listener
+        themeToggle.addEventListener('click', () => {
+            const newTheme = document.body.classList.contains('dark-theme') ? 'light' : 'dark';
+            setThemePreference(newTheme);
+        });
+
+         // System theme change listener
+         prefersDarkScheme.addEventListener('change', (e) => {
+            // Only change if no user preference is explicitly stored
+            if (!localStorage.getItem('theme')) {
+                applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+
+        // --- Active Navigation Link & Footer Year ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set current year
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+
+            // Set active nav link
+            const currentLocation = window.location.pathname;
+            let activeLinkFound = false;
+
+            navLinksElements.forEach(link => {
+                try {
+                    const linkUrl = new URL(link.href, window.location.origin);
+                    const linkPath = linkUrl.pathname;
+
+                    // Normalize paths (remove trailing slash if not root, handle index.html)
+                    const normalizePath = (path) => {
+                        if (path === '/' || path.endsWith('/index.html')) return '/';
+                        return path.replace(/\/$/, '');
+                    };
+
+                    const normalizedCurrent = normalizePath(currentLocation);
+                    const normalizedLink = normalizePath(linkPath);
+
+                    if (normalizedCurrent === normalizedLink) {
+                        link.classList.add('active');
+                        activeLinkFound = true;
+                    } else {
+                        link.classList.remove('active');
+                    }
+                } catch (e) {
+                    console.error("Error processing link href:", link.href, e);
+                }
+            });
+
+            // Fallback for root index.html if no other match was found
+            // (This case is usually handled by the normalization above, but kept as safeguard)
+            if (!activeLinkFound && normalizePath(currentLocation) === '/') {
+                 const homeLink = document.querySelector('.nav-links a[href="index.html"], .nav-links a[href="/"]');
+                 if (homeLink) {
+                     navLinksElements.forEach(l => l.classList.remove('active')); // Clear others first
+                     homeLink.classList.add('active');
+                 }
+            }
         });
     </script>
 </body>
