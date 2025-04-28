@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me - Stuti Srivastava</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Embedded Styles -->
     <style>
         :root {
             /* Light theme (default) */
@@ -12,22 +18,28 @@
             --bg-secondary: #f8f9fa;
             --text-primary: #212529;
             --text-secondary: #6c757d;
-            --accent-color: #4fc3f7;
-            --accent-hover: #0b7dda;
+            --accent-color: #4fc3f7; /* Light Blue */
+            --accent-hover: #03a9f4; /* Slightly darker blue */
             --card-bg: #ffffff;
-            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            --border-color: #e9ecef;
-            --transition: all 0.3s ease;
+            --card-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+            --border-color: #dee2e6;
+            --transition: all 0.3s ease-in-out;
+            --gradient-start: var(--text-primary);
+            --gradient-end: var(--accent-color);
+            --accent-color-transparent: rgba(79, 195, 247, 0.2); /* For glow effects */
         }
 
         .dark-theme {
-            --bg-primary: #212529;
-            --bg-secondary: #343a40;
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2c2c2c;
             --text-primary: #f8f9fa;
             --text-secondary: #adb5bd;
-            --card-bg: #2b3035;
-            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            --card-bg: #252525;
+            --card-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
             --border-color: #495057;
+            --gradient-start: var(--text-primary);
+            --gradient-end: var(--accent-color);
+            --accent-color-transparent: rgba(79, 195, 247, 0.3); /* Adjusted glow for dark */
         }
 
         * {
@@ -37,22 +49,27 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+             scroll-padding-top: 80px; /* Offset for fixed header */
+        }
+
         body {
             background-color: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
-            transition: var(--transition);
+            line-height: 1.7;
+            transition: background-color 0.3s ease, color 0.3s ease;
             overflow-x: hidden;
         }
 
         a {
             text-decoration: none;
-            color: var(--text-primary);
-            transition: var(--transition);
+            color: var(--accent-color);
+            transition: color 0.3s ease;
         }
 
         a:hover {
-            color: var(--accent-color);
+            color: var(--accent-hover);
         }
 
         .container {
@@ -62,16 +79,23 @@
             padding: 0 15px;
         }
 
+        /* Accessibility */
+        :focus-visible {
+            outline: 3px solid var(--accent-color);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
         /* Header Styles */
         header {
             background-color: var(--bg-primary);
-            padding: 20px 0;
+            padding: 18px 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         nav {
@@ -81,38 +105,47 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
         }
 
         .logo a {
             color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+        .logo a:hover {
+             color: var(--accent-color);
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .nav-links a {
             font-weight: 500;
+            color: var(--text-secondary);
             position: relative;
-            padding: 5px 0;
+            padding: 8px 0;
+            transition: color 0.3s ease;
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
             width: 0;
-            height: 2px;
+            height: 2.5px;
             bottom: 0;
             left: 0;
             background-color: var(--accent-color);
             transition: width 0.3s ease;
+            border-radius: 1px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
         }
 
         .nav-links a:hover::after,
@@ -120,133 +153,214 @@
             width: 100%;
         }
 
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
         .theme-toggle {
             background: none;
             border: none;
             color: var(--text-primary);
             cursor: pointer;
-            font-size: 1.2rem;
-            padding: 5px;
-            margin-left: 20px;
+            font-size: 1.3rem;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-        
+        .theme-toggle:hover {
+            background-color: var(--bg-secondary);
+        }
+
         .menu-toggle {
             display: none;
             background: none;
             border: none;
             color: var(--text-primary);
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
+            padding: 8px;
         }
 
-        /* About Hero Section */
-        .about-hero {
-            padding: 150px 0 80px;
-            text-align: center;
-        }
 
-        .about-hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            background: linear-gradient(90deg, var(--text-primary), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .about-hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            color: var(--text-secondary);
-        }
-
-        /* My Journey Section with Timeline */
-        .journey-section {
-            padding: 80px 0;
-        }
-
+        /* Common Section Title */
         .section-title {
             text-align: center;
             margin-bottom: 60px;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
+            font-weight: 700;
             color: var(--text-primary);
             position: relative;
+             transition: color 0.3s ease;
         }
 
-        .section-title span {
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 0;
+            transition: background-color 0.3s ease;
+        }
+        /* Specific section styles */
+         .about-hero {
+             padding: 160px 0 80px; /* Increased top padding */
+             text-align: center;
+             background-color: var(--bg-secondary); /* Subtle background color */
+             border-bottom: 1px solid var(--border-color);
+             transition: background-color 0.3s ease, border-color 0.3s ease;
+         }
+         .journey-section {
+             /* Default padding applied by section rule */
+             background-color: var(--bg-primary);
+         }
+        .skills-section {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+
+        /* About Hero Section */
+        .about-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem); /* Responsive title */
+            margin-bottom: 25px;
+            font-weight: 700;
+            color: var(--text-primary); /* Fallback */
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        .about-hero p {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem); /* Responsive subtitle */
+            max-width: 750px;
+            margin: 0 auto 30px;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+
+        /* My Journey Section */
+        .journey-section .section-title span {
             color: var(--accent-color);
+             transition: color 0.3s ease;
         }
 
         .accent-emoji {
-            font-size: 1.5em;
+            font-size: 1.3em; /* Slightly smaller */
             display: inline-block;
-            transform: rotate(15deg);
+            transform: rotate(12deg);
             margin: 0 5px;
-            color: #ffc107;
+            color: #ffc107; /* Keep yellow */
+            vertical-align: middle; /* Align better with text */
         }
 
         /* Timeline Styles */
         .timeline-container {
             max-width: 900px;
-            margin: 0 auto;
+            margin: 50px auto 0; /* Add margin top */
+            position: relative;
             padding: 0 20px;
         }
 
+        /* The vertical line */
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background-color: var(--border-color);
+            top: 10px;
+            bottom: 10px;
+            left: 238px; /* Adjusted position based on grid */
+            transform: translateX(-50%);
+            border-radius: 2px;
+            z-index: 1;
+             transition: background-color 0.3s ease;
+        }
+
+
         .timeline-item {
             display: grid;
-            grid-template-columns: 200px 40px 1fr;
+            grid-template-columns: 200px 75px 1fr; /* Adjusted grid for alignment */
             margin-bottom: 50px;
             position: relative;
+            align-items: start; /* Align items to the top */
+             gap: 20px; /* Added gap between columns */
+        }
+         .timeline-item:last-child {
+             margin-bottom: 0; /* Remove margin from last item */
         }
 
         .timeline-date {
             color: var(--text-secondary);
-            font-size: 1.1rem;
-            padding-top: 3px;
+            font-size: 1rem; /* Slightly smaller */
+            font-weight: 500;
+            text-align: right;
+            padding-top: 8px; /* Align with dot */
+            padding-right: 20px; /* Space before line */
+             transition: color 0.3s ease;
         }
 
         .timeline-connector {
             position: relative;
             display: flex;
             justify-content: center;
-        }
-
-        .timeline-connector::before {
-            content: '';
-            position: absolute;
-            width: 1px;
-            background-color: var(--border-color);
-            top: 30px;
-            bottom: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .timeline-item:last-child .timeline-connector::before {
-            display: none;
+            height: 100%; /* Ensure it spans */
+             z-index: 2; /* Above the line */
         }
 
         .timeline-dot {
-            width: 14px;
-            height: 14px;
+            width: 16px; /* Larger dot */
+            height: 16px;
             background-color: var(--accent-color);
+            border: 3px solid var(--bg-primary); /* Makes it look like a ring */
             border-radius: 50%;
-            margin-top: 8px;
+            margin-top: 8px; /* Align with text */
             position: relative;
-            z-index: 2;
+            z-index: 3; /* Above line and connector */
+            box-shadow: 0 0 0 4px var(--accent-color-transparent); /* Subtle glow */
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .timeline-content-wrapper {
+            background-color: var(--card-bg);
+            padding: 25px; /* Add padding */
+            border-radius: 12px; /* Rounded corners */
+            box-shadow: var(--card-shadow);
+             border: 1px solid var(--border-color);
+             transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .timeline-content-wrapper:hover {
+             transform: translateY(-5px);
+             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+             /* Enhance shadow on dark theme */
+             .dark-theme & { box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3); }
         }
 
         .timeline-company {
             display: flex;
-            align-items: flex-start;
+            align-items: center; /* Vertically center items */
             gap: 15px;
             margin-bottom: 10px;
         }
 
         .company-logo {
-            width: 36px;
-            height: 36px;
+            width: 40px; /* Slightly larger logo */
+            height: 40px;
             border-radius: 8px;
             background-color: var(--bg-secondary);
             display: flex;
@@ -254,103 +368,157 @@
             justify-content: center;
             overflow: hidden;
             flex-shrink: 0;
+             border: 1px solid var(--border-color);
+             font-size: 1.5rem; /* For text placeholders */
+             font-weight: bold;
+             color: var(--accent-color);
+             transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
         }
 
         .company-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: 80%; /* Adjust image size within logo */
+            height: 80%;
+            object-fit: contain; /* Use contain for logos */
         }
 
         .company-info h3 {
-            font-size: 1.25rem;
+            font-size: 1.3rem; /* Larger title */
             color: var(--text-primary);
             margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 8px;
+            font-weight: 600; /* Bolder title */
+             transition: color 0.3s ease;
         }
 
-        .company-name {
-            font-weight: 600;
+        .company-info .role { /* Style the role distinctly */
+             display: block; /* Put role on new line */
+             font-size: 1rem;
+             color: var(--accent-color);
+             font-weight: 500;
+             margin-bottom: 5px;
+              transition: color 0.3s ease;
         }
 
-        .timeline-content {
+        .company-info .location {
+            font-size: 0.9rem;
             color: var(--text-secondary);
-            margin-top: 5px;
+             transition: color 0.3s ease;
         }
+
+        .timeline-description { /* Renamed from timeline-content */
+            color: var(--text-secondary);
+            font-size: 0.95rem; /* Slightly adjust size */
+            margin-top: 10px;
+             transition: color 0.3s ease;
+        }
+         .timeline-description ul {
+             list-style-type: disc; /* Use standard bullets */
+             padding-left: 20px;
+             margin-top: 10px;
+         }
+         .timeline-description li {
+             margin-bottom: 8px;
+         }
 
         /* Skills & Interests Section */
-        .skills-section {
-            padding: 80px 0;
-            background-color: var(--bg-secondary);
-        }
-
         .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px; /* Increased gap */
         }
 
         .skill-card {
             background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 16px;
+            padding: 35px; /* Increased padding */
+            border-radius: 16px; /* More rounded */
             box-shadow: var(--card-shadow);
-            transition: var(--transition);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+             border: 1px solid var(--border-color);
         }
 
         .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px); /* Lift effect */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+             /* Enhance shadow on dark theme */
+             .dark-theme & { box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); }
         }
 
         .skill-card h3 {
             color: var(--text-primary);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
             border-bottom: 2px solid var(--border-color);
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.3s ease, border-color 0.3s ease;
         }
+         .skill-card h3 i {
+            color: var(--accent-color);
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+         }
 
         .skill-card ul {
             list-style-type: none;
+            padding-left: 0; /* Remove default padding */
         }
 
         .skill-card li {
-            margin-bottom: 10px;
+            margin-bottom: 12px; /* Increased spacing */
             display: flex;
             align-items: center;
+            color: var(--text-secondary); /* Apply to list item */
+            font-size: 0.95rem;
+             transition: color 0.3s ease;
         }
+         .skill-card li:hover {
+             color: var(--text-primary);
+         }
 
         .skill-card li i {
             color: var(--accent-color);
-            margin-right: 10px;
+            margin-right: 12px;
+            width: 20px; /* Fixed width */
+            text-align: center;
+            font-size: 1.1em;
+             flex-shrink: 0; /* Prevent icon shrinking */
+             transition: color 0.3s ease;
         }
 
         /* Footer */
         footer {
-            background-color: var(--bg-secondary);
+            background-color: var(--bg-primary); /* Match primary bg for about page footer */
             color: var(--text-secondary);
-            padding: 40px 0;
+            padding: 50px 0;
             text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            /* Removed border-top as skills section has border-bottom */
         }
 
         .footer-content {
             max-width: 600px;
             margin: 0 auto;
         }
+        .footer-content p {
+            margin-bottom: 20px;
+             font-size: 0.9rem;
+              transition: color 0.3s ease;
+        }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin: 20px 0;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin: 25px 0;
         }
 
         .footer-links a {
             color: var(--text-secondary);
-            transition: var(--transition);
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
         .footer-links a:hover {
@@ -358,65 +526,113 @@
         }
 
         .footer-social {
-            margin: 20px 0;
+            margin: 30px 0 20px;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
         }
 
         .footer-social a {
             color: var(--text-secondary);
-            font-size: 1.2rem;
-            transition: var(--transition);
+            font-size: 1.4rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+            display: inline-block;
         }
 
         .footer-social a:hover {
             color: var(--accent-color);
-            transform: translateY(-3px);
+            transform: translateY(-4px) scale(1.1);
         }
 
         /* Responsive Styles */
         @media screen and (max-width: 992px) {
+            .timeline-container::before {
+                left: 48px; /* Adjust line position for smaller date column */
+                 /* Match reduced grid gap */
+                 left: calc(150px + 37.5px); /* (date width + half connector width) */
+            }
             .timeline-item {
-                grid-template-columns: 150px 40px 1fr;
+                grid-template-columns: 150px 75px 1fr; /* Adjust grid */
+            }
+            .timeline-date {
+                font-size: 0.9rem; /* Reduce date font size */
+            }
+             .skills-container {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             }
         }
 
         @media screen and (max-width: 768px) {
-            .menu-toggle {
+             .menu-toggle {
                 display: block;
+                 z-index: 1001;
             }
+             .nav-buttons {
+                 gap: 0.5rem;
+             }
             .nav-links {
                 position: fixed;
-                top: 80px;
+                top: 0;
                 left: -100%;
                 width: 100%;
-                height: calc(100vh - 80px);
+                height: 100vh;
                 background-color: var(--bg-primary);
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                transition: var(--transition);
-                gap: 2rem;
+                 transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1), background-color 0.3s ease;
+                gap: 2.5rem;
                 padding: 2rem 0;
+                z-index: 999;
+                 box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+                 overflow-y: auto;
             }
             .nav-links.active {
                 left: 0;
             }
-            .timeline-item {
-                grid-template-columns: 1fr;
-                gap: 10px;
+             .nav-links a {
+                 font-size: 1.2rem;
             }
-            .timeline-connector {
-                display: none;
+            .timeline-container::before {
+                left: 20px; /* Move line close to left edge */
+                 /* Align with center of 40px dot column */
+            }
+
+            .timeline-item {
+                grid-template-columns: 40px 1fr; /* Simpler grid: dot | content */
+                gap: 15px; /* Reduce gap */
             }
             .timeline-date {
-                color: var(--accent-color);
-                font-weight: 600;
+                grid-column: 2 / 3; /* Span content column */
+                grid-row: 1 / 2; /* Place it first */
+                text-align: left;
+                padding: 0 0 5px 0; /* Adjust padding */
+                font-size: 0.9rem;
+                 font-weight: 600;
+                 color: var(--accent-color); /* Make date stand out */
+            }
+            .timeline-connector {
+                 grid-column: 1 / 2; /* Place dot in first column */
+                 grid-row: 1 / 3; /* Span across date and content */
+                 justify-content: flex-start; /* Align dot left */
+                 padding-top: 0; /* Align dot with top */
+                  /* Adjust horizontal alignment for 40px width */
+                 align-items: flex-start;
+                 padding-left: calc(50% - 8px); /* Center the 16px dot */
+            }
+             .timeline-dot {
+                 margin-top: 8px; /* Align with date text top */
+             }
+            .timeline-content-wrapper {
+                grid-column: 2 / 3; /* Span content column */
+                 grid-row: 2 / 3; /* Place below date */
             }
             .section-title {
-                font-size: 2rem;
+                font-size: 2.3rem;
             }
+             .skills-container {
+                 grid-template-columns: 1fr;
+             }
         }
     </style>
 </head>
@@ -427,215 +643,233 @@
                 <div class="logo">
                     <a href="index.html">Stuti Srivastava</a>
                 </div>
-                <ul class="nav-links">
+                <ul class="nav-links" id="nav-links">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="about.html">About</a></li>
                     <li><a href="resume.html">Resume</a></li>
                     <li><a href="projects.html">Projects</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
                 <div class="nav-buttons">
                     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-moon"></i> <!-- Default to moon -->
                     </button>
-                    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
-                        <i class="fas fa-bars"></i>
+                    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                        <i class="fas fa-bars"></i> <!-- Default to bars -->
                     </button>
                 </div>
             </nav>
         </div>
     </header>
 
-    <section class="about-hero">
-        <div class="container">
-            <h1>My Professional Journey</h1>
-            <p>From IoT Engineer to DevOps & AI Engineer, combining cloud infrastructure with generative AI!</p>
-        </div>
-    </section>
+    <main>
+        <section class="about-hero">
+            <div class="container">
+                <h1>About Me</h1>
+                <p>An innovative DevOps & AI Engineer passionate about building scalable cloud solutions and leveraging the power of generative AI to solve complex problems.</p>
+            </div>
+        </section>
 
-    <section class="journey-section">
-        <div class="container">
-            <h2 class="section-title">My career journey, from <span>code</span> to <span>AI</span> <span class="accent-emoji">✨</span></h2>
-            
-            <div class="timeline-container">
-                <!-- Current Role -->
-                <div class="timeline-item">
-                    <div class="timeline-date">
-                        September 2023 - Present
-                    </div>
-                    <div class="timeline-connector">
-                        <div class="timeline-dot"></div>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="timeline-company">
-                            <div class="company-logo">
-                                <img src="https://placehold.co/100/4fc3f7/ffffff?text=P" alt="Philips Logo">
+        <section class="journey-section" id="journey">
+            <div class="container">
+                <h2 class="section-title">My Professional Journey <span class="accent-emoji">🚀</span></h2>
+
+                <div class="timeline-container">
+                    <!-- Current Role -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">
+                            Sept 2023 - Present
+                        </div>
+                        <div class="timeline-connector">
+                            <div class="timeline-dot"></div>
+                        </div>
+                        <div class="timeline-content-wrapper">
+                            <div class="timeline-company">
+                                <!-- Use a placeholder initial or icon if no logo -->
+                                <div class="company-logo">P</div>
+                                <div class="company-info">
+                                    <span class="role">IT DevOps Engineer</span>
+                                    <h3>Philips</h3>
+                                    <span class="location">Chennai, India</span>
+                                </div>
                             </div>
-                            <div class="company-info">
-                                <h3>IT DevOps Engineer <span>at</span> <span class="company-name">Philips, Chennai</span></h3>
+                            <div class="timeline-description">
+                                Architecting microservices (FastAPI, Python) for Salesforce integration. Developing cutting-edge LLM solutions using Azure OpenAI, focusing on RAG implementations, prompt engineering, and full-stack Salesforce development (LWC, Apex). Driving CI/CD and cloud deployment best practices.
                             </div>
                         </div>
-                        <p>Architected microservices-based systems with FastAPI and Python for Salesforce integration; Developing LLM solutions with Azure OpenAI services including RAG implementations and prompt engineering</p>
                     </div>
-                </div>
-                
-                <!-- DevOps Intern -->
-                <div class="timeline-item">
-                    <div class="timeline-date">
-                        September 2022 - September 2023
-                    </div>
-                    <div class="timeline-connector">
-                        <div class="timeline-dot"></div>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="timeline-company">
-                            <div class="company-logo">
-                                <img src="https://placehold.co/100/4fc3f7/ffffff?text=P" alt="Philips Logo">
+
+                    <!-- DevOps Intern -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">
+                            Sept 2022 - Sept 2023
+                        </div>
+                        <div class="timeline-connector">
+                            <div class="timeline-dot"></div>
+                        </div>
+                         <div class="timeline-content-wrapper">
+                            <div class="timeline-company">
+                                 <div class="company-logo">P</div>
+                                <div class="company-info">
+                                     <span class="role">DevOps Engineer Intern</span>
+                                    <h3>Philips</h3>
+                                     <span class="location">Bengaluru, India</span>
+                                </div>
                             </div>
-                            <div class="company-info">
-                                <h3>DevOps Engineer Intern <span>at</span> <span class="company-name">Philips, Bengaluru</span></h3>
+                            <div class="timeline-description">
+                                Developed automated deployment pipelines for cloud applications (Salesforce). Created automated testing frameworks, enhancing QA processes. Gained hands-on experience in cloud infrastructure management and CI/CD optimization.
                             </div>
                         </div>
-                        <p>Developed automated deployment pipelines for cloud-based applications and created automated testing frameworks for quality assurance</p>
                     </div>
-                </div>
-                
-                <!-- Masters Degree -->
-                <div class="timeline-item">
-                    <div class="timeline-date">
-                        2021 - 2023
-                    </div>
-                    <div class="timeline-connector">
-                        <div class="timeline-dot"></div>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="timeline-company">
-                            <div class="company-logo">
-                                <img src="https://placehold.co/100/4fc3f7/ffffff?text=V" alt="VJTI Logo">
+
+                    <!-- Masters Degree -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">
+                            2021 - 2023
+                        </div>
+                        <div class="timeline-connector">
+                            <div class="timeline-dot"></div>
+                        </div>
+                         <div class="timeline-content-wrapper">
+                            <div class="timeline-company">
+                                <div class="company-logo"><i class="fas fa-graduation-cap"></i></div> {/* Icon for education */}
+                                <div class="company-info">
+                                     <span class="role">M.Tech in Electronics (IoT)</span>
+                                    <h3>VJTI, Mumbai</h3>
+                                     <span class="location">Mumbai, India</span>
+                                </div>
                             </div>
-                            <div class="company-info">
-                                <h3>M.Tech in Electronics (IoT) <span>from</span> <span class="company-name">VJTI, Mumbai</span></h3>
+                            <div class="timeline-description">
+                                Graduated with Distinction (9.05 CPI). Specialized in Internet of Things, embedded systems, cloud connectivity, and data analytics, laying the groundwork for current AI and cloud focus.
+                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Software Development Intern -->
+                     <div class="timeline-item">
+                        <div class="timeline-date">
+                            Aug 2020 - Jan 2021
+                        </div>
+                        <div class="timeline-connector">
+                            <div class="timeline-dot"></div>
+                        </div>
+                        <div class="timeline-content-wrapper">
+                            <div class="timeline-company">
+                                 <div class="company-logo">A</div>
+                                <div class="company-info">
+                                     <span class="role">Software Development Intern</span>
+                                    <h3>AMY Softech</h3>
+                                     <span class="location">New Delhi, India</span>
+                                </div>
+                            </div>
+                            <div class="timeline-description">
+                                Gained early experience in full-stack development using Microsoft Power Apps and Dynamics 365. Implemented RESTful APIs for data integration and contributed to business process automation.
                             </div>
                         </div>
-                        <p>Graduated with 9.05 CPI, specializing in Internet of Things and embedded systems</p>
                     </div>
-                </div>
-                
-                <!-- Software Development Intern -->
-                <div class="timeline-item">
-                    <div class="timeline-date">
-                        August 2020 - January 2021
-                    </div>
-                    <div class="timeline-connector">
-                        <div class="timeline-dot"></div>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="timeline-company">
-                            <div class="company-logo">
-                                <img src="https://placehold.co/100/4fc3f7/ffffff?text=A" alt="AMY Softech Logo">
+
+                    <!-- Bachelor's Degree -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">
+                            2017 - 2021
+                        </div>
+                        <div class="timeline-connector">
+                            <div class="timeline-dot"></div>
+                        </div>
+                        <div class="timeline-content-wrapper">
+                            <div class="timeline-company">
+                                <div class="company-logo"><i class="fas fa-university"></i></div>
+                                <div class="company-info">
+                                     <span class="role">B.Tech in Electronics & Telecom</span>
+                                    <h3>VIT, Pune</h3>
+                                     <span class="location">Pune, India</span>
+                                </div>
                             </div>
-                            <div class="company-info">
-                                <h3>Software Development Intern <span>at</span> <span class="company-name">AMY Softech, New Delhi</span></h3>
+                            <div class="timeline-description">
+                                Established a strong foundation in electronic systems, communication networks, and programming (7.69 CPI). Explored various aspects of hardware and software interaction.
                             </div>
                         </div>
-                        <p>Developed full-stack applications using Microsoft Power Apps and Dynamics 365, implementing RESTful APIs for data integration</p>
                     </div>
-                </div>
-                
-                <!-- Bachelor's Degree -->
-                <div class="timeline-item">
-                    <div class="timeline-date">
-                        2017 - 2021
-                    </div>
-                    <div class="timeline-connector">
-                        <div class="timeline-dot"></div>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="timeline-company">
-                            <div class="company-logo">
-                                <img src="https://placehold.co/100/4fc3f7/ffffff?text=V" alt="VIT Logo">
+
+                    <!-- Global Internship Program -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">
+                            June 2017
+                        </div>
+                        <div class="timeline-connector">
+                            <div class="timeline-dot"></div>
+                        </div>
+                        <div class="timeline-content-wrapper">
+                            <div class="timeline-company">
+                                <div class="company-logo"><i class="fas fa-globe-asia"></i></div>
+                                <div class="company-info">
+                                    <span class="role">Global Internship Program</span>
+                                    <h3>NTU, Singapore</h3>
+                                    <span class="location">Singapore</span>
+                                </div>
                             </div>
-                            <div class="company-info">
-                                <h3>B.Tech in Electronics & Telecom <span>from</span> <span class="company-name">VIT, Pune</span></h3>
+                            <div class="timeline-description">
+                                Participated in an intensive one-month program focused on emerging technologies and global engineering practices at Nanyang Technological University.
                             </div>
                         </div>
-                        <p>Graduated with 7.69 CPI, focusing on electronic systems and communication networks</p>
-                    </div>
-                </div>
-                
-                <!-- Global Internship Program -->
-                <div class="timeline-item">
-                    <div class="timeline-date">
-                        2017
-                    </div>
-                    <div class="timeline-connector">
-                        <div class="timeline-dot"></div>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="timeline-company">
-                            <div class="company-logo">
-                                <img src="https://placehold.co/100/4fc3f7/ffffff?text=N" alt="NTU Logo">
-                            </div>
-                            <div class="company-info">
-                                <h3>Global Internship Program <span>at</span> <span class="company-name">NTU, Singapore</span></h3>
-                            </div>
-                        </div>
-                        <p>One-month intensive program at Nanyang Technology University</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="skills-section">
-        <div class="container">
-            <h2 class="section-title">Skills & Interests</h2>
-            
-            <div class="skills-container">
-                <div class="skill-card">
-                    <h3>AI Engineering Skills</h3>
-                    <ul>
-                        <li><i class="fas fa-brain"></i> Prompt Engineering for LLMs</li>
-                        <li><i class="fas fa-database"></i> Vector Databases & Embeddings</li>
-                        <li><i class="fas fa-project-diagram"></i> LangChain Framework Development</li>
-                        <li><i class="fas fa-search"></i> Retrieval Augmented Generation (RAG)</li>
-                        <li><i class="fas fa-cog"></i> LLM Fine-tuning & Optimization</li>
-                        <li><i class="fas fa-cloud-upload-alt"></i> AI Model Deployment at Scale</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-card">
-                    <h3>DevOps & Cloud</h3>
-                    <ul>
-                        <li><i class="fas fa-server"></i> Microservices Architecture</li>
-                        <li><i class="fab fa-salesforce"></i> Salesforce Integration</li>
-                        <li><i class="fas fa-cloud"></i> Multi-Cloud Infrastructure (AWS, Azure, GCP)</li>
-                        <li><i class="fab fa-docker"></i> Container Orchestration (Docker, Kubernetes)</li>
-                        <li><i class="fas fa-code-branch"></i> CI/CD Pipelines & MLOps</li>
-                        <li><i class="fab fa-python"></i> Python & FastAPI Development</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-card">
-                    <h3>Projects & Achievements</h3>
-                    <ul>
-                        <li><i class="fas fa-robot"></i> Built RAG systems for enterprise knowledge bases</li>
-                        <li><i class="fas fa-certificate"></i> Salesforce Certified Platform Developer I</li>
-                        <li><i class="fas fa-users"></i> Organized Philips Dreamforce Event</li>
-                        <li><i class="fas fa-graduation-cap"></i> M.Tech with 9.05 CPI from VJTI Mumbai</li>
-                        <li><i class="fas fa-laptop-code"></i> Open Source Contributions to AI Tools</li>
-                        <li><i class="fas fa-brain"></i> AI/ML Applications in DevOps Workflows</li>
-                    </ul>
+        <section class="skills-section" id="skills">
+            <div class="container">
+                <h2 class="section-title">Core Competencies</h2>
+
+                <div class="skills-container">
+                    <div class="skill-card">
+                        <h3><i class="fas fa-robot"></i> AI Engineering</h3>
+                        <ul>
+                            <li><i class="fas fa-pen-nib"></i> Prompt Engineering & Optimization</li>
+                            <li><i class="fas fa-database"></i> Vector Databases & Semantic Search</li>
+                            <li><i class="fas fa-link"></i> LangChain Framework Development</li>
+                            <li><i class="fas fa-search-plus"></i> Retrieval Augmented Generation (RAG)</li>
+                            <li><i class="fas fa-cogs"></i> LLM Fine-tuning & Adaptation</li>
+                            <li><i class="fas fa-cloud-upload-alt"></i> AI Model Deployment & MLOps</li>
+                            <li><i class="fab fa-microsoft"></i> Azure OpenAI Service Expertise</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-card">
+                        <h3><i class="fas fa-cogs"></i> DevOps & Cloud</h3>
+                        <ul>
+                            <li><i class="fas fa-server"></i> Microservices & API Design (FastAPI)</li>
+                            <li><i class="fab fa-docker"></i> Containerization (Docker)</li>
+                            <li><i class="fas fa-dharmachakra"></i> Orchestration (Kubernetes)</li>
+                            <li><i class="fas fa-cloud"></i> Cloud Platforms (Azure, AWS)</li>
+                            <li><i class="fas fa-code-branch"></i> CI/CD & Automation (Azure DevOps)</li>
+                             <li><i class="fas fa-shield-alt"></i> Infrastructure as Code (IaC) Principles</li>
+                            <li><i class="fas fa-chart-line"></i> Monitoring & Logging</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-card">
+                        <h3><i class="fas fa-code"></i> Development & Integration</h3>
+                        <ul>
+                            <li><i class="fab fa-python"></i> Python (Core, FastAPI, Libraries)</li>
+                            <li><i class="fab fa-salesforce"></i> Salesforce Platform (Apex, LWC, SOQL)</li>
+                             <li><i class="fas fa-project-diagram"></i> System Integration Patterns</li>
+                             <li><i class="fab fa-js"></i> JavaScript & Frontend Basics</li>
+                            <li><i class="fas fa-database"></i> Relational & NoSQL Databases</li>
+                            <li><i class="fab fa-git-alt"></i> Version Control (Git)</li>
+                            <li><i class="fas fa-vial"></i> Software Testing & QA</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
+
 
     <footer>
         <div class="container">
             <div class="footer-content">
-                <p>© 2025 Stuti Srivastava. All rights reserved.</p>
-                <div class="footer-links">
+                 <div class="footer-links">
                     <a href="index.html">Home</a>
                     <a href="about.html">About</a>
                     <a href="resume.html">Resume</a>
@@ -643,66 +877,134 @@
                     <a href="contact.html">Contact</a>
                 </div>
                 <div class="footer-social">
-                    <a href="https://github.com/stutisri27" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com/in/stutisrivastava" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="mailto:stutisri27@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/stutisri27" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/stutisrivastava" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:stutisri27@gmail.com" aria-label="Send Email"><i class="fas fa-envelope"></i></a>
                 </div>
+                 <p>© <span id="current-year"></span> Stuti Srivastava. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Mobile menu toggle
+     <script>
+        // --- DOM Elements ---
         const menuToggle = document.getElementById('menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        
+        const navLinks = document.getElementById('nav-links');
+        const themeToggle = document.getElementById('theme-toggle');
+        const currentYearSpan = document.getElementById('current-year');
+        const navLinksElements = document.querySelectorAll('.nav-links a');
+
+        // --- Mobile Menu ---
         menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
             navLinks.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', String(!isExpanded));
             menuToggle.querySelector('i').classList.toggle('fa-bars');
             menuToggle.querySelector('i').classList.toggle('fa-times');
         });
 
-        // Theme toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-        
-        // Check for saved theme preference or use the system preference
-        const currentTheme = localStorage.getItem('theme') || 
-                            (prefersDarkScheme.matches ? 'dark' : 'light');
-        
-        // Set initial theme
-        if (currentTheme === 'dark') {
-            document.body.classList.add('dark-theme');
-            themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
-        }
-        
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-theme');
-            
-            // Update icon
-            const icon = themeToggle.querySelector('i');
-            if (document.body.classList.contains('dark-theme')) {
-                icon.classList.replace('fa-moon', 'fa-sun');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                icon.classList.replace('fa-sun', 'fa-moon');
-                localStorage.setItem('theme', 'light');
-            }
-        });
-        
-        // Set active navigation link
-        document.addEventListener('DOMContentLoaded', () => {
-            const currentLocation = location.pathname;
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            navLinks.forEach(link => {
-                const linkPath = new URL(link.href).pathname;
-                if (currentLocation === linkPath || 
-                    (currentLocation === '/' && linkPath.endsWith('index.html'))) {
-                    link.classList.add('active');
+        // Close menu when a link is clicked
+        navLinksElements.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
                 }
             });
         });
-    </script>
+
+        // --- Theme Toggle ---
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        const applyTheme = (theme) => {
+            const icon = themeToggle.querySelector('i');
+            if (theme === 'dark') {
+                document.body.classList.add('dark-theme');
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                document.body.classList.remove('dark-theme');
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        };
+
+        const setThemePreference = (theme) => {
+            applyTheme(theme);
+            localStorage.setItem('theme', theme);
+        };
+
+        // Load initial theme
+        const savedTheme = localStorage.getItem('theme');
+        const initialTheme = savedTheme || (prefersDarkScheme.matches ? 'dark' : 'light');
+        applyTheme(initialTheme);
+
+        // Theme toggle button listener
+        themeToggle.addEventListener('click', () => {
+            const newTheme = document.body.classList.contains('dark-theme') ? 'light' : 'dark';
+            setThemePreference(newTheme);
+        });
+
+        // System theme change listener
+        prefersDarkScheme.addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+
+
+        // --- Active Navigation Link & Footer Year ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set current year
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+
+            // Set active nav link
+            const currentLocation = window.location.pathname;
+            let activeLinkFound = false;
+
+            navLinksElements.forEach(link => {
+                try {
+                    const linkUrl = new URL(link.href, window.location.origin);
+                    const linkPath = linkUrl.pathname;
+
+                    // Normalize paths (remove trailing slash if not root, handle index.html)
+                    const normalizePath = (path) => {
+                         // Treat index.html as root for comparison
+                        if (path.endsWith('/index.html')) {
+                            return path.substring(0, path.length - 'index.html'.length).replace(/\/$/, '') || '/';
+                        }
+                        return path.replace(/\/$/, '') || '/'; // Ensure root is '/'
+                    };
+
+                    const normalizedCurrent = normalizePath(currentLocation);
+                    const normalizedLink = normalizePath(linkPath);
+
+                    // Check if the normalized paths match exactly
+                    if (normalizedCurrent === normalizedLink) {
+                        link.classList.add('active');
+                        activeLinkFound = true; // Mark that we found the active link
+                    } else {
+                        link.classList.remove('active'); // Ensure others are not active
+                    }
+                } catch (e) {
+                    console.error("Error processing link href:", link.href, e);
+                }
+            });
+
+             // Fallback/Correction: Specifically check for 'about.html' if no exact match was found
+             // This helps if the server routing is slightly different or if normalization failed
+             if (!activeLinkFound && currentLocation.includes('about.html')) {
+                 const aboutLink = document.querySelector('.nav-links a[href="about.html"]');
+                 if (aboutLink) {
+                     navLinksElements.forEach(l => l.classList.remove('active')); // Reset all first
+                     aboutLink.classList.add('active');
+                 }
+             }
+        });
+
+     </script>
+
 </body>
 </html>
