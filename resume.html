@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me - Stuti Srivastava</title>
+    <title>Resume - Stuti Srivastava</title>
     <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,9 +24,11 @@
             --card-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
             --border-color: #dee2e6;
             --transition: all 0.3s ease-in-out;
-            --gradient-start: var(--text-primary);
-            --gradient-end: var(--accent-color);
-            --accent-color-transparent: rgba(79, 195, 247, 0.2); /* For glow effects */
+            --tag-bg: #e9f7fe; /* Light blue background for tags */
+            --tag-text: #0b7dda; /* Darker blue text for tags */
+             --gradient-start: var(--text-primary);
+             --gradient-end: var(--accent-color);
+             --accent-color-transparent: rgba(79, 195, 247, 0.2); /* For glow effects */
         }
 
         .dark-theme {
@@ -37,9 +39,11 @@
             --card-bg: #252525;
             --card-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
             --border-color: #495057;
-            --gradient-start: var(--text-primary);
-            --gradient-end: var(--accent-color);
-            --accent-color-transparent: rgba(79, 195, 247, 0.3); /* Adjusted glow for dark */
+            --tag-bg: #164e63; /* Dark teal background */
+            --tag-text: #67e8f9; /* Light cyan text */
+             --gradient-start: var(--text-primary);
+             --gradient-end: var(--accent-color);
+             --accent-color-transparent: rgba(79, 195, 247, 0.3); /* Adjusted glow for dark */
         }
 
         * {
@@ -51,7 +55,7 @@
 
         html {
             scroll-behavior: smooth;
-             scroll-padding-top: 80px; /* Offset for fixed header */
+            scroll-padding-top: 80px; /* Offset for fixed header */
         }
 
         body {
@@ -79,12 +83,13 @@
             padding: 0 15px;
         }
 
-        /* Accessibility */
-        :focus-visible {
-            outline: 3px solid var(--accent-color);
-            outline-offset: 3px;
-            border-radius: 4px;
-        }
+         /* Accessibility */
+         :focus-visible {
+             outline: 3px solid var(--accent-color);
+             outline-offset: 3px;
+             border-radius: 4px;
+         }
+
 
         /* Header Styles */
         header {
@@ -111,11 +116,11 @@
 
         .logo a {
             color: var(--text-primary);
-            transition: color 0.3s ease;
+             transition: color 0.3s ease;
         }
-        .logo a:hover {
+         .logo a:hover {
              color: var(--accent-color);
-        }
+         }
 
         .nav-links {
             display: flex;
@@ -169,9 +174,9 @@
             border-radius: 50%;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        .theme-toggle:hover {
-            background-color: var(--bg-secondary);
-        }
+         .theme-toggle:hover {
+             background-color: var(--bg-secondary);
+         }
 
         .menu-toggle {
             display: none;
@@ -185,57 +190,40 @@
 
 
         /* Common Section Title */
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-            font-size: 2.8rem;
-            font-weight: 700;
+         .section-title {
+            font-size: 2.5rem; /* Adjusted size */
+            margin-bottom: 50px; /* Increased spacing */
             color: var(--text-primary);
             position: relative;
+            display: inline-block; /* To contain the underline */
+            padding-bottom: 10px; /* Space for underline */
+             font-weight: 700;
              transition: color 0.3s ease;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
-            width: 70px;
-            height: 4px;
+            width: 70px; /* Wider underline */
+            height: 4px; /* Thicker underline */
             background-color: var(--accent-color);
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: 0;
+            left: 0;
             border-radius: 2px;
-            transition: background-color 0.3s ease;
+             transition: background-color 0.3s ease;
         }
 
-        /* Section Styling */
-        section {
-            padding: 100px 0;
-            transition: background-color 0.3s ease;
-        }
-        /* Specific section styles */
-         .about-hero {
-             padding: 160px 0 80px; /* Increased top padding */
-             text-align: center;
-             background-color: var(--bg-secondary); /* Subtle background color */
+        /* Resume Hero Section */
+        .resume-hero {
+            padding: 160px 0 70px; /* Adjusted padding */
+            text-align: center;
+            background-color: var(--bg-secondary); /* Added background */
              border-bottom: 1px solid var(--border-color);
              transition: background-color 0.3s ease, border-color 0.3s ease;
-         }
-         .journey-section {
-             /* Default padding applied by section rule */
-             background-color: var(--bg-primary);
-         }
-        .skills-section {
-            background-color: var(--bg-secondary);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
-
-        /* About Hero Section */
-        .about-hero h1 {
-            font-size: clamp(2.5rem, 5vw, 3.5rem); /* Responsive title */
+        .resume-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             margin-bottom: 25px;
             font-weight: 700;
             color: var(--text-primary); /* Fallback */
@@ -246,255 +234,399 @@
             text-fill-color: transparent;
         }
 
-        .about-hero p {
-            font-size: clamp(1.1rem, 2.5vw, 1.3rem); /* Responsive subtitle */
+        .resume-hero p {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
             max-width: 750px;
-            margin: 0 auto 30px;
+            margin: 0 auto 40px; /* Increased bottom margin */
             color: var(--text-secondary);
-            transition: color 0.3s ease;
-        }
-
-        /* My Journey Section */
-        .journey-section .section-title span {
-            color: var(--accent-color);
              transition: color 0.3s ease;
         }
 
-        .accent-emoji {
-            font-size: 1.3em; /* Slightly smaller */
+        .resume-download {
             display: inline-block;
-            transform: rotate(12deg);
-            margin: 0 5px;
-            color: #ffc107; /* Keep yellow */
-            vertical-align: middle; /* Align better with text */
+            background-color: var(--accent-color);
+            color: white;
+            padding: 14px 30px; /* Match button style */
+            border-radius: 10px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(79, 195, 247, 0.3);
+            border: 2px solid transparent;
         }
 
-        /* Timeline Styles */
-        .timeline-container {
-            max-width: 900px;
-            margin: 50px auto 0; /* Add margin top */
-            position: relative;
-            padding: 0 20px;
+        .resume-download:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(3, 169, 244, 0.4);
+            color: white;
         }
 
-        /* The vertical line */
-        .timeline-container::before {
-            content: '';
-            position: absolute;
-            width: 3px;
-            background-color: var(--border-color);
-            top: 10px;
-            bottom: 10px;
-            left: 238px; /* Adjusted position based on grid */
-            transform: translateX(-50%);
-            border-radius: 2px;
-            z-index: 1;
+        .resume-download i {
+            margin-right: 10px; /* Increased spacing */
+        }
+
+        /* Resume Content Sections */
+        .resume-section {
+            padding: 80px 0; /* Consistent padding */
              transition: background-color 0.3s ease;
         }
 
+        .resume-section:nth-of-type(odd) { /* Style odd sections */
+            background-color: var(--bg-primary);
+        }
+        .resume-section:nth-of-type(even) { /* Style even sections differently */
+             background-color: var(--bg-secondary);
+             border-top: 1px solid var(--border-color);
+             border-bottom: 1px solid var(--border-color);
+             transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+         .resume-section:last-of-type {
+             border-bottom: none; /* Remove bottom border on last section */
+         }
 
-        .timeline-item {
-            display: grid;
-            grid-template-columns: 200px 75px 1fr; /* Adjusted grid for alignment */
-            margin-bottom: 50px;
+
+        .resume-container {
+            max-width: 900px; /* Consistent max width */
+            margin: 0 auto;
+        }
+
+
+        /* Experience Timeline */
+        .resume-timeline {
             position: relative;
-            align-items: start; /* Align items to the top */
-             gap: 20px; /* Added gap between columns */
-        }
-         .timeline-item:last-child {
-             margin-bottom: 0; /* Remove margin from last item */
+            padding-left: 40px; /* Increased padding for better spacing */
+             margin-top: 30px; /* Add space below section title */
         }
 
-        .timeline-date {
-            color: var(--text-secondary);
-            font-size: 1rem; /* Slightly smaller */
-            font-weight: 500;
-            text-align: right;
-            padding-top: 8px; /* Align with dot */
-            padding-right: 20px; /* Space before line */
-             transition: color 0.3s ease;
+        .resume-timeline::before {
+            content: '';
+            position: absolute;
+            width: 3px; /* Thicker line */
+            background-color: var(--border-color);
+            top: 10px; /* Adjust start */
+            bottom: 10px; /* Adjust end */
+            left: 10px; /* Align with the dot center */
+             border-radius: 2px;
+             z-index: 1;
+             transition: background-color 0.3s ease;
         }
 
-        .timeline-connector {
+        .resume-item {
             position: relative;
-            display: flex;
-            justify-content: center;
-            height: 100%; /* Ensure it spans */
-             z-index: 2; /* Above the line */
-        }
-
-        .timeline-dot {
-            width: 16px; /* Larger dot */
-            height: 16px;
-            background-color: var(--accent-color);
-            border: 3px solid var(--bg-primary); /* Makes it look like a ring */
-            border-radius: 50%;
-            margin-top: 8px; /* Align with text */
-            position: relative;
-            z-index: 3; /* Above line and connector */
-            box-shadow: 0 0 0 4px var(--accent-color-transparent); /* Subtle glow */
-            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .timeline-content-wrapper {
-            background-color: var(--card-bg);
-            padding: 25px; /* Add padding */
-            border-radius: 12px; /* Rounded corners */
-            box-shadow: var(--card-shadow);
+            margin-bottom: 50px; /* Consistent spacing */
+             background-color: var(--card-bg); /* Give items a card background */
+             padding: 25px 30px; /* Add padding */
+             border-radius: 12px; /* Rounded corners */
+             box-shadow: var(--card-shadow);
              border: 1px solid var(--border-color);
              transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
         }
-        .timeline-content-wrapper:hover {
+         .resume-item:hover {
              transform: translateY(-5px);
              box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
-             /* Enhance shadow on dark theme */
              .dark-theme & { box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3); }
+         }
+
+        .resume-item:last-child {
+            margin-bottom: 0;
         }
 
-        .timeline-company {
+        .resume-item::before {
+            content: '';
+            position: absolute;
+            width: 18px; /* Larger dot */
+            height: 18px;
+            background-color: var(--accent-color);
+            border: 3px solid var(--bg-primary); /* Ring effect */
+            border-radius: 50%;
+            top: 28px; /* Adjust vertical position */
+            left: -52px; /* Adjust horizontal position based on padding-left */
+            z-index: 2; /* Above line */
+             box-shadow: 0 0 0 4px var(--accent-color-transparent); /* Glow */
+             transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+
+        .resume-header {
             display: flex;
-            align-items: center; /* Vertically center items */
-            gap: 15px;
-            margin-bottom: 10px;
+            justify-content: space-between;
+            align-items: flex-start; /* Align items top */
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+             gap: 10px; /* Add gap for wrapping */
         }
 
-        .company-logo {
-            width: 40px; /* Slightly larger logo */
-            height: 40px;
-            border-radius: 8px;
-            background-color: var(--bg-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            flex-shrink: 0;
-             border: 1px solid var(--border-color);
-             font-size: 1.5rem; /* For text placeholders */
-             font-weight: bold;
-             color: var(--accent-color);
-             transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-        }
-
-        .company-logo img {
-            width: 80%; /* Adjust image size within logo */
-            height: 80%;
-            object-fit: contain; /* Use contain for logos */
-        }
-
-        .company-info h3 {
-            font-size: 1.3rem; /* Larger title */
+        .resume-title {
+            font-size: 1.5rem; /* Larger title */
             color: var(--text-primary);
-            margin-bottom: 5px;
-            font-weight: 600; /* Bolder title */
+            font-weight: 600; /* Bolder */
+            margin: 0;
              transition: color 0.3s ease;
         }
 
-        .company-info .role { /* Style the role distinctly */
-             display: block; /* Put role on new line */
-             font-size: 1rem;
-             color: var(--accent-color);
-             font-weight: 500;
-             margin-bottom: 5px;
+        .resume-subtitle {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-bottom: 5px; /* Reduced margin */
+            font-weight: 500; /* Medium weight */
+             transition: color 0.3s ease;
+        }
+
+        .resume-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem; /* Smaller date */
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            white-space: nowrap; /* Prevent date wrapping */
+             padding-top: 5px; /* Align better with title */
+             flex-shrink: 0; /* Prevent shrinking */
               transition: color 0.3s ease;
         }
 
-        .company-info .location {
-            font-size: 0.9rem;
+        .resume-date i {
+            margin-right: 6px;
+             font-size: 0.9em; /* Slightly smaller icon */
+        }
+
+        .resume-content {
             color: var(--text-secondary);
+            font-size: 0.95rem; /* Adjust text size */
              transition: color 0.3s ease;
         }
 
-        .timeline-description { /* Renamed from timeline-content */
-            color: var(--text-secondary);
-            font-size: 0.95rem; /* Slightly adjust size */
-            margin-top: 10px;
-             transition: color 0.3s ease;
+        .resume-content h4 { /* Style subheadings within content */
+             font-size: 1.05rem;
+             color: var(--text-primary);
+             font-weight: 600;
+             margin-top: 20px;
+             margin-bottom: 10px;
+              transition: color 0.3s ease;
         }
-         .timeline-description ul {
-             list-style-type: disc; /* Use standard bullets */
-             padding-left: 20px;
+
+        .resume-content ul {
+            list-style-type: none;
+            padding-left: 5px; /* Adjust padding */
              margin-top: 10px;
-         }
-         .timeline-description li {
-             margin-bottom: 8px;
-         }
+        }
 
-        /* Skills & Interests Section */
+        .resume-content li {
+            margin-bottom: 12px; /* Increased spacing */
+            position: relative;
+            padding-left: 25px; /* Space for icon */
+             line-height: 1.6; /* Improve readability */
+        }
+
+        .resume-content li::before {
+            content: '\f058'; /* Font Awesome check-circle icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900; /* Use solid style */
+            color: var(--accent-color);
+            font-size: 0.9rem; /* Adjust icon size */
+            position: absolute;
+            left: 0px; /* Align icon */
+            top: 5px; /* Adjust vertical alignment */
+             transition: color 0.3s ease;
+        }
+
+
+        /* Skills Section */
         .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 35px; /* Increased gap */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+            gap: 30px; /* Consistent gap */
+             margin-top: 30px;
         }
 
-        .skill-card {
+        .skill-category {
             background-color: var(--card-bg);
-            padding: 35px; /* Increased padding */
-            border-radius: 16px; /* More rounded */
+            padding: 30px; /* Consistent padding */
+            border-radius: 16px; /* Consistent radius */
             box-shadow: var(--card-shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
              border: 1px solid var(--border-color);
         }
 
-        .skill-card:hover {
-            transform: translateY(-8px); /* Lift effect */
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
-             /* Enhance shadow on dark theme */
+        .skill-category:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
              .dark-theme & { box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); }
         }
 
-        .skill-card h3 {
-            color: var(--text-primary);
+        .skill-category h3 {
+            font-size: 1.4rem; /* Consistent heading size */
             margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--border-color);
-            font-size: 1.4rem;
+            color: var(--text-primary);
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: color 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-color); /* Add border bottom */
+             display: flex;
+             align-items: center;
+             gap: 10px;
+              transition: color 0.3s ease, border-color 0.3s ease;
         }
-         .skill-card h3 i {
+        .skill-category h3 i {
             color: var(--accent-color);
-            font-size: 1.2em;
-            transition: color 0.3s ease;
+            font-size: 1.1em;
+             transition: color 0.3s ease;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background-color: var(--tag-bg);
+            color: var(--tag-text);
+            padding: 7px 14px; /* Adjusted padding */
+            border-radius: 20px;
+            font-size: 0.85rem; /* Adjusted size */
+            font-weight: 500;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+             border: 1px solid transparent; /* Placeholder for potential border */
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+             background-color: var(--accent-color); /* Change background on hover */
+             color: white; /* Change text color on hover */
+        }
+
+        /* Education Section */
+        .education-item {
+            background-color: var(--card-bg);
+            padding: 30px; /* Increased padding */
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px; /* Consistent spacing */
+             transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+             border: 1px solid var(--border-color);
+        }
+         .education-item:last-child {
+             margin-bottom: 0;
          }
 
-        .skill-card ul {
-            list-style-type: none;
-            padding-left: 0; /* Remove default padding */
+        .education-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+            .dark-theme & { box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3); }
         }
 
-        .skill-card li {
-            margin-bottom: 12px; /* Increased spacing */
+        .education-header {
             display: flex;
-            align-items: center;
-            color: var(--text-secondary); /* Apply to list item */
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 10px; /* Reduced margin */
+             gap: 5px;
+        }
+
+        .education-title {
+            font-size: 1.3rem; /* Adjusted size */
+            color: var(--text-primary);
+            font-weight: 600;
+            margin: 0;
+             transition: color 0.3s ease;
+        }
+
+        .education-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            white-space: nowrap;
+            padding-top: 4px; /* Align better */
+             flex-shrink: 0;
+              transition: color 0.3s ease;
+        }
+
+        .education-institution {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-bottom: 15px; /* Increased margin */
+            font-weight: 500; /* Medium weight */
+             display: block; /* Ensure it takes its own line */
+              transition: color 0.3s ease;
+        }
+
+        .education-details {
+            color: var(--text-secondary);
             font-size: 0.95rem;
              transition: color 0.3s ease;
         }
-         .skill-card li:hover {
-             color: var(--text-primary);
+         .education-details p {
+             margin-bottom: 5px;
+         }
+         .education-details strong {
+             color: var(--text-primary); /* Make label slightly darker */
+             font-weight: 500;
+              transition: color 0.3s ease;
          }
 
-        .skill-card li i {
+
+        /* Certifications Section */
+        .certifications-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+             margin-top: 30px;
+        }
+
+        .certification-item {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            align-items: flex-start; /* Align icon top */
+             border: 1px solid var(--border-color);
+        }
+
+        .certification-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+            .dark-theme & { box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3); }
+        }
+
+        .certification-icon {
+            font-size: 2.2rem; /* Slightly larger icon */
             color: var(--accent-color);
-            margin-right: 12px;
-            width: 20px; /* Fixed width */
-            text-align: center;
-            font-size: 1.1em;
-             flex-shrink: 0; /* Prevent icon shrinking */
+            margin-right: 20px; /* Increased spacing */
+            margin-top: 3px; /* Adjust vertical align */
+             flex-shrink: 0;
+             width: 40px; /* Give icon fixed width */
+             text-align: center;
+             transition: color 0.3s ease;
+        }
+
+        .certification-content h3 {
+            font-size: 1.15rem; /* Adjusted size */
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 8px;
+             transition: color 0.3s ease;
+        }
+
+        .certification-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem; /* Smaller description */
+            line-height: 1.6;
              transition: color 0.3s ease;
         }
 
         /* Footer */
         footer {
-            background-color: var(--bg-primary); /* Match primary bg for about page footer */
+            background-color: var(--bg-secondary);
             color: var(--text-secondary);
             padding: 50px 0;
             text-align: center;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            /* Removed border-top as skills section has border-bottom */
+             border-top: 1px solid var(--border-color);
+              transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
         .footer-content {
@@ -502,15 +634,15 @@
             margin: 0 auto;
         }
         .footer-content p {
-            margin-bottom: 20px;
+             margin-bottom: 20px;
              font-size: 0.9rem;
               transition: color 0.3s ease;
-        }
+         }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
+             flex-wrap: wrap;
             gap: 25px;
             margin: 25px 0;
         }
@@ -545,23 +677,6 @@
         }
 
         /* Responsive Styles */
-        @media screen and (max-width: 992px) {
-            .timeline-container::before {
-                left: 48px; /* Adjust line position for smaller date column */
-                 /* Match reduced grid gap */
-                 left: calc(150px + 37.5px); /* (date width + half connector width) */
-            }
-            .timeline-item {
-                grid-template-columns: 150px 75px 1fr; /* Adjust grid */
-            }
-            .timeline-date {
-                font-size: 0.9rem; /* Reduce date font size */
-            }
-             .skills-container {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            }
-        }
-
         @media screen and (max-width: 768px) {
              .menu-toggle {
                 display: block;
@@ -583,7 +698,7 @@
                  transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1), background-color 0.3s ease;
                 gap: 2.5rem;
                 padding: 2rem 0;
-                z-index: 999;
+                 z-index: 999;
                  box-shadow: 5px 0 15px rgba(0,0,0,0.1);
                  overflow-y: auto;
             }
@@ -593,47 +708,59 @@
              .nav-links a {
                  font-size: 1.2rem;
             }
-            .timeline-container::before {
-                left: 20px; /* Move line close to left edge */
-                 /* Align with center of 40px dot column */
+            .resume-hero h1 {
+                font-size: clamp(2.2rem, 8vw, 3rem);
+            }
+             .resume-hero p {
+                 font-size: clamp(1rem, 4vw, 1.1rem);
+             }
+            .section-title {
+                 font-size: 2.1rem; /* Adjust size */
+                 margin-bottom: 40px;
             }
 
-            .timeline-item {
-                grid-template-columns: 40px 1fr; /* Simpler grid: dot | content */
-                gap: 15px; /* Reduce gap */
+            .resume-timeline {
+                padding-left: 30px; /* Reduce padding */
             }
-            .timeline-date {
-                grid-column: 2 / 3; /* Span content column */
-                grid-row: 1 / 2; /* Place it first */
-                text-align: left;
-                padding: 0 0 5px 0; /* Adjust padding */
-                font-size: 0.9rem;
-                 font-weight: 600;
-                 color: var(--accent-color); /* Make date stand out */
-            }
-            .timeline-connector {
-                 grid-column: 1 / 2; /* Place dot in first column */
-                 grid-row: 1 / 3; /* Span across date and content */
-                 justify-content: flex-start; /* Align dot left */
-                 padding-top: 0; /* Align dot with top */
-                  /* Adjust horizontal alignment for 40px width */
-                 align-items: flex-start;
-                 padding-left: calc(50% - 8px); /* Center the 16px dot */
-            }
-             .timeline-dot {
-                 margin-top: 8px; /* Align with date text top */
+             .resume-item {
+                 padding: 20px; /* Reduce padding */
              }
-            .timeline-content-wrapper {
-                grid-column: 2 / 3; /* Span content column */
-                 grid-row: 2 / 3; /* Place below date */
+            .resume-item::before {
+                left: -45px; /* Adjust dot position */
+                width: 16px;
+                height: 16px;
             }
-            .section-title {
-                font-size: 2.3rem;
+            .resume-header {
+                /* Flex-wrap already handles stacking */
             }
-             .skills-container {
-                 grid-template-columns: 1fr;
+             .resume-date {
+                 font-size: 0.85rem;
+             }
+            .resume-title {
+                 font-size: 1.3rem;
+            }
+            .skills-container,
+            .certifications-container {
+                grid-template-columns: 1fr; /* Stack items */
+                gap: 25px;
+            }
+             .education-item {
+                 padding: 25px;
              }
         }
+         @media screen and (max-width: 480px) {
+             .resume-header {
+                 flex-direction: column; /* Force column layout */
+                 align-items: flex-start;
+             }
+             .resume-date {
+                 padding-top: 0;
+                 margin-top: 5px; /* Add space */
+             }
+             .resume-item::before {
+                 top: 20px; /* Adjust dot position for stacked header */
+             }
+         }
     </style>
 </head>
 <body>
@@ -643,7 +770,7 @@
                 <div class="logo">
                     <a href="index.html">Stuti Srivastava</a>
                 </div>
-                <ul class="nav-links" id="nav-links">
+                 <ul class="nav-links" id="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="resume.html">Resume</a></li>
@@ -663,153 +790,92 @@
     </header>
 
     <main>
-        <section class="about-hero">
+        <section class="resume-hero">
             <div class="container">
-                <h1>About Me</h1>
-                <p>An innovative DevOps & AI Engineer passionate about building scalable cloud solutions and leveraging the power of generative AI to solve complex problems.</p>
+                <h1>Professional Resume</h1>
+                <p>A detailed overview of my experience, skills, and education as a DevOps & AI Engineer.</p>
+                 <!-- IMPORTANT: Update this href to the correct path of your resume file -->
+                <a href="assets/files/Stuti_Srivastava_Resume_Placeholder.pdf" class="resume-download" download="Stuti_Srivastava_Resume.pdf">
+                    <i class="fas fa-download"></i> Download Resume (PDF)
+                </a>
             </div>
         </section>
 
-        <section class="journey-section" id="journey">
+        <section class="resume-section" id="experience">
             <div class="container">
-                <h2 class="section-title">My Professional Journey <span class="accent-emoji">🚀</span></h2>
+                <div class="resume-container">
+                    <h2 class="section-title">Experience</h2>
 
-                <div class="timeline-container">
-                    <!-- Current Role -->
-                    <div class="timeline-item">
-                        <div class="timeline-date">
-                            Sept 2023 - Present
-                        </div>
-                        <div class="timeline-connector">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="timeline-content-wrapper">
-                            <div class="timeline-company">
-                                <!-- Use a placeholder initial or icon if no logo -->
-                                <div class="company-logo">P</div>
-                                <div class="company-info">
-                                    <span class="role">IT DevOps Engineer</span>
-                                    <h3>Philips</h3>
-                                    <span class="location">Chennai, India</span>
+                    <div class="resume-timeline">
+                        <!-- Current Role -->
+                        <div class="resume-item">
+                            <div class="resume-header">
+                                <div>
+                                    <h3 class="resume-title">IT DevOps Engineer</h3>
+                                    <p class="resume-subtitle">Philips, Chennai</p>
                                 </div>
+                                <p class="resume-date"><i class="far fa-calendar-alt"></i> Sept 2023 - Present</p>
                             </div>
-                            <div class="timeline-description">
-                                Architecting microservices (FastAPI, Python) for Salesforce integration. Developing cutting-edge LLM solutions using Azure OpenAI, focusing on RAG implementations, prompt engineering, and full-stack Salesforce development (LWC, Apex). Driving CI/CD and cloud deployment best practices.
-                            </div>
-                        </div>
-                    </div>
+                            <div class="resume-content">
+                                <h4>AI & Backend Development</h4>
+                                <ul>
+                                    <li>Spearheaded the architecture and implementation of a microservices-based system using FastAPI and Python for real-time Salesforce data processing and AI integration.</li>
+                                    <li>Developed and deployed LLM-powered solutions leveraging Azure OpenAI, including advanced RAG systems and sophisticated prompt engineering techniques for enterprise use cases.</li>
+                                    <li>Engineered robust RESTful APIs ensuring seamless communication between AI services (Azure OpenAI) and Salesforce CRM.</li>
+                                    <li>Implemented comprehensive unit and integration tests (Pytest), achieving over 75% code coverage for backend services and critical Salesforce components.</li>
+                                </ul>
 
-                    <!-- DevOps Intern -->
-                    <div class="timeline-item">
-                        <div class="timeline-date">
-                            Sept 2022 - Sept 2023
-                        </div>
-                        <div class="timeline-connector">
-                            <div class="timeline-dot"></div>
-                        </div>
-                         <div class="timeline-content-wrapper">
-                            <div class="timeline-company">
-                                 <div class="company-logo">P</div>
-                                <div class="company-info">
-                                     <span class="role">DevOps Engineer Intern</span>
-                                    <h3>Philips</h3>
-                                     <span class="location">Bengaluru, India</span>
-                                </div>
-                            </div>
-                            <div class="timeline-description">
-                                Developed automated deployment pipelines for cloud applications (Salesforce). Created automated testing frameworks, enhancing QA processes. Gained hands-on experience in cloud infrastructure management and CI/CD optimization.
-                            </div>
-                        </div>
-                    </div>
+                                <h4>Full Stack & Salesforce Development</h4>
+                                <ul>
+                                    <li>Built dynamic and responsive user interfaces within Salesforce using Lightning Web Components (LWC) and modern JavaScript.</li>
+                                    <li>Developed complex backend business logic and data manipulation workflows in Apex.</li>
+                                    <li>Designed and optimized scalable database interactions using SOQL, ensuring efficient data retrieval and management.</li>
+                                </ul>
 
-                    <!-- Masters Degree -->
-                    <div class="timeline-item">
-                        <div class="timeline-date">
-                            2021 - 2023
-                        </div>
-                        <div class="timeline-connector">
-                            <div class="timeline-dot"></div>
-                        </div>
-                         <div class="timeline-content-wrapper">
-                            <div class="timeline-company">
-                                <div class="company-logo"><i class="fas fa-graduation-cap"></i></div> {/* Icon for education */}
-                                <div class="company-info">
-                                     <span class="role">M.Tech in Electronics (IoT)</span>
-                                    <h3>VJTI, Mumbai</h3>
-                                     <span class="location">Mumbai, India</span>
-                                </div>
+                                <h4>Cloud & DevOps Practices</h4>
+                                <ul>
+                                    <li>Containerized applications using Docker and managed deployments effectively using Kubernetes (K8s).</li>
+                                    <li>Designed and maintained CI/CD pipelines with Azure DevOps for automated build, testing, and deployment processes across multiple environments.</li>
+                                    <li>Utilized a range of cloud services on AWS and Azure to support application infrastructure and scalability needs.</li>
+                                </ul>
                             </div>
-                            <div class="timeline-description">
-                                Graduated with Distinction (9.05 CPI). Specialized in Internet of Things, embedded systems, cloud connectivity, and data analytics, laying the groundwork for current AI and cloud focus.
-                             </div>
                         </div>
-                    </div>
 
-                    <!-- Software Development Intern -->
-                     <div class="timeline-item">
-                        <div class="timeline-date">
-                            Aug 2020 - Jan 2021
-                        </div>
-                        <div class="timeline-connector">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="timeline-content-wrapper">
-                            <div class="timeline-company">
-                                 <div class="company-logo">A</div>
-                                <div class="company-info">
-                                     <span class="role">Software Development Intern</span>
-                                    <h3>AMY Softech</h3>
-                                     <span class="location">New Delhi, India</span>
+                        <!-- DevOps Intern -->
+                        <div class="resume-item">
+                            <div class="resume-header">
+                                <div>
+                                    <h3 class="resume-title">DevOps Engineer Intern</h3>
+                                    <p class="resume-subtitle">Philips, Bengaluru</p>
                                 </div>
+                                <p class="resume-date"><i class="far fa-calendar-alt"></i> Sept 2022 - Sept 2023</p>
                             </div>
-                            <div class="timeline-description">
-                                Gained early experience in full-stack development using Microsoft Power Apps and Dynamics 365. Implemented RESTful APIs for data integration and contributed to business process automation.
+                            <div class="resume-content">
+                                <ul>
+                                    <li>Contributed to the development of automated deployment pipelines for cloud-based applications, primarily focusing on Salesforce.</li>
+                                    <li>Assisted in creating and implementing automated testing frameworks to improve software quality and reliability.</li>
+                                    <li>Gained practical experience in cloud infrastructure management (AWS/Azure) and cost optimization techniques.</li>
+                                    <li>Collaborated with development teams to integrate DevOps practices, streamlining the CI/CD workflow.</li>
+                                </ul>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Bachelor's Degree -->
-                    <div class="timeline-item">
-                        <div class="timeline-date">
-                            2017 - 2021
-                        </div>
-                        <div class="timeline-connector">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="timeline-content-wrapper">
-                            <div class="timeline-company">
-                                <div class="company-logo"><i class="fas fa-university"></i></div>
-                                <div class="company-info">
-                                     <span class="role">B.Tech in Electronics & Telecom</span>
-                                    <h3>VIT, Pune</h3>
-                                     <span class="location">Pune, India</span>
+                        <!-- Software Development Intern -->
+                        <div class="resume-item">
+                            <div class="resume-header">
+                                <div>
+                                    <h3 class="resume-title">Software Development Intern</h3>
+                                    <p class="resume-subtitle">AMY Softech, New Delhi</p>
                                 </div>
+                                <p class="resume-date"><i class="far fa-calendar-alt"></i> Aug 2020 - Jan 2021</p>
                             </div>
-                            <div class="timeline-description">
-                                Established a strong foundation in electronic systems, communication networks, and programming (7.69 CPI). Explored various aspects of hardware and software interaction.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Global Internship Program -->
-                    <div class="timeline-item">
-                        <div class="timeline-date">
-                            June 2017
-                        </div>
-                        <div class="timeline-connector">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="timeline-content-wrapper">
-                            <div class="timeline-company">
-                                <div class="company-logo"><i class="fas fa-globe-asia"></i></div>
-                                <div class="company-info">
-                                    <span class="role">Global Internship Program</span>
-                                    <h3>NTU, Singapore</h3>
-                                    <span class="location">Singapore</span>
-                                </div>
-                            </div>
-                            <div class="timeline-description">
-                                Participated in an intensive one-month program focused on emerging technologies and global engineering practices at Nanyang Technological University.
+                            <div class="resume-content">
+                                <ul>
+                                    <li>Developed full-stack applications utilizing Microsoft Power Apps and Dynamics 365, enhancing business process capabilities.</li>
+                                    <li>Implemented RESTful APIs to facilitate data integration between various enterprise systems.</li>
+                                    <li>Designed and created automated workflows to optimize internal business processes.</li>
+                                    <li>Actively participated in requirements gathering sessions and contributed to solution design documentation.</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -817,59 +883,171 @@
             </div>
         </section>
 
-        <section class="skills-section" id="skills">
+        <section class="resume-section" id="education">
             <div class="container">
-                <h2 class="section-title">Core Competencies</h2>
+                <div class="resume-container">
+                    <h2 class="section-title">Education</h2>
 
-                <div class="skills-container">
-                    <div class="skill-card">
-                        <h3><i class="fas fa-robot"></i> AI Engineering</h3>
-                        <ul>
-                            <li><i class="fas fa-pen-nib"></i> Prompt Engineering & Optimization</li>
-                            <li><i class="fas fa-database"></i> Vector Databases & Semantic Search</li>
-                            <li><i class="fas fa-link"></i> LangChain Framework Development</li>
-                            <li><i class="fas fa-search-plus"></i> Retrieval Augmented Generation (RAG)</li>
-                            <li><i class="fas fa-cogs"></i> LLM Fine-tuning & Adaptation</li>
-                            <li><i class="fas fa-cloud-upload-alt"></i> AI Model Deployment & MLOps</li>
-                            <li><i class="fab fa-microsoft"></i> Azure OpenAI Service Expertise</li>
-                        </ul>
+                    <div class="education-item">
+                        <div class="education-header">
+                            <h3 class="education-title">Master of Technology (M.Tech)</h3>
+                            <p class="education-date">2021 - 2023</p>
+                        </div>
+                        <p class="education-institution">Veermata Jijabai Technical Institute (VJTI), Mumbai</p>
+                        <div class="education-details">
+                            <p><strong>Major:</strong> Electronics Engineering (Specialization: Internet of Things)</p>
+                            <p><strong>CPI:</strong> 9.05 / 10.0 (Distinction)</p>
+                            <p>Focused on advanced topics in embedded systems, cloud computing for IoT, wireless sensor networks, and data analytics.</p>
+                        </div>
                     </div>
 
-                    <div class="skill-card">
-                        <h3><i class="fas fa-cogs"></i> DevOps & Cloud</h3>
-                        <ul>
-                            <li><i class="fas fa-server"></i> Microservices & API Design (FastAPI)</li>
-                            <li><i class="fab fa-docker"></i> Containerization (Docker)</li>
-                            <li><i class="fas fa-dharmachakra"></i> Orchestration (Kubernetes)</li>
-                            <li><i class="fas fa-cloud"></i> Cloud Platforms (Azure, AWS)</li>
-                            <li><i class="fas fa-code-branch"></i> CI/CD & Automation (Azure DevOps)</li>
-                             <li><i class="fas fa-shield-alt"></i> Infrastructure as Code (IaC) Principles</li>
-                            <li><i class="fas fa-chart-line"></i> Monitoring & Logging</li>
-                        </ul>
+                    <div class="education-item">
+                        <div class="education-header">
+                            <h3 class="education-title">Bachelor of Technology (B.Tech)</h3>
+                            <p class="education-date">2017 - 2021</p>
+                        </div>
+                        <p class="education-institution">Vishwakarma Institute of Technology (VIT), Pune</p>
+                        <div class="education-details">
+                            <p><strong>Major:</strong> Electronics and Telecommunication Engineering</p>
+                            <p><strong>CPI:</strong> 7.69 / 10.0</p>
+                            <p>Developed a comprehensive understanding of electronics, digital communication systems, signal processing, and computer networks.</p>
+                        </div>
                     </div>
 
-                    <div class="skill-card">
-                        <h3><i class="fas fa-code"></i> Development & Integration</h3>
-                        <ul>
-                            <li><i class="fab fa-python"></i> Python (Core, FastAPI, Libraries)</li>
-                            <li><i class="fab fa-salesforce"></i> Salesforce Platform (Apex, LWC, SOQL)</li>
-                             <li><i class="fas fa-project-diagram"></i> System Integration Patterns</li>
-                             <li><i class="fab fa-js"></i> JavaScript & Frontend Basics</li>
-                            <li><i class="fas fa-database"></i> Relational & NoSQL Databases</li>
-                            <li><i class="fab fa-git-alt"></i> Version Control (Git)</li>
-                            <li><i class="fas fa-vial"></i> Software Testing & QA</li>
-                        </ul>
+                    <div class="education-item">
+                        <div class="education-header">
+                            <h3 class="education-title">Global Internship Program</h3>
+                            <p class="education-date">June 2017</p>
+                        </div>
+                        <p class="education-institution">Nanyang Technological University (NTU), Singapore</p>
+                        <div class="education-details">
+                            <p>Completed an intensive one-month program focusing on emerging technologies, cross-cultural collaboration, and global engineering trends.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="resume-section" id="skills">
+            <div class="container">
+                <div class="resume-container">
+                    <h2 class="section-title">Skills</h2>
+
+                    <div class="skills-container">
+                        <div class="skill-category">
+                            <h3><i class="fas fa-robot"></i> AI & Machine Learning</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Generative AI</span>
+                                <span class="skill-tag">LLMs</span>
+                                <span class="skill-tag">Prompt Engineering</span>
+                                <span class="skill-tag">LangChain</span>
+                                <span class="skill-tag">Vector Databases</span>
+                                <span class="skill-tag">RAG Systems</span>
+                                <span class="skill-tag">LLM Fine-tuning</span>
+                                <span class="skill-tag">Azure OpenAI</span>
+                                <span class="skill-tag">MLOps</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                             <h3><i class="fas fa-code"></i> Programming & Frameworks</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">FastAPI</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">LWC</span>
+                                <span class="skill-tag">Apex</span>
+                                <span class="skill-tag">SQL</span>
+                                <span class="skill-tag">SOQL</span>
+                                <span class="skill-tag">HTML/CSS</span>
+                                <span class="skill-tag">Java (Basic)</span>
+                            </div>
+                        </div>
+
+                         <div class="skill-category">
+                            <h3><i class="fas fa-cloud"></i> Cloud & DevOps</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">AWS</span>
+                                <span class="skill-tag">Azure</span>
+                                <span class="skill-tag">GCP (Basic)</span>
+                                <span class="skill-tag">Docker</span>
+                                <span class="skill-tag">Kubernetes</span>
+                                <span class="skill-tag">Microservices</span>
+                                <span class="skill-tag">Serverless</span>
+                                <span class="skill-tag">CI/CD Pipelines</span>
+                                <span class="skill-tag">Azure DevOps</span>
+                                <span class="skill-tag">Git</span>
+                                 <span class="skill-tag">Terraform (Basic)</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <h3><i class="fas fa-tools"></i> Tools & Platforms</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Salesforce</span>
+                                <span class="skill-tag">VS Code</span>
+                                <span class="skill-tag">Postman</span>
+                                <span class="skill-tag">Jira</span>
+                                <span class="skill-tag">Pytest</span>
+                                <span class="skill-tag">Linux/Unix</span>
+                                <span class="skill-tag">Power Platform</span>
+                                 <span class="skill-tag">Databases (Postgres, MongoDB)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="resume-section" id="certifications">
+            <div class="container">
+                <div class="resume-container">
+                    <h2 class="section-title">Certifications</h2>
+
+                    <div class="certifications-container">
+                        <div class="certification-item">
+                            <div class="certification-icon">
+                                <i class="fab fa-salesforce"></i>
+                            </div>
+                            <div class="certification-content">
+                                <h3>Salesforce Certified Platform Developer I</h3>
+                                <p>Demonstrates skills in building custom applications on the Salesforce Platform using Apex and Visualforce/LWC.</p>
+                                 <!-- Add verification link if available -->
+                                 <!-- <a href="#" target="_blank" rel="noopener noreferrer">Verify</a> -->
+                            </div>
+                        </div>
+
+                        <div class="certification-item">
+                            <div class="certification-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="certification-content">
+                                <h3>Cybersecurity and Digital Forensics</h3>
+                                <p>Completed training focused on cybersecurity fundamentals, threat analysis, and digital forensics techniques (MSME Business Forum).</p>
+                            </div>
+                        </div>
+
+                        <div class="certification-item">
+                            <div class="certification-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <div class="certification-content">
+                                <h3>The Complete Web Development Bootcamp</h3>
+                                <p>Comprehensive training covering full-stack web development technologies including HTML, CSS, JavaScript, Node.js, React, and databases.</p>
+                            </div>
+                        </div>
+                         <!-- Add more certifications if available -->
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-
     <footer>
         <div class="container">
             <div class="footer-content">
-                 <div class="footer-links">
+                <div class="footer-links">
                     <a href="index.html">Home</a>
                     <a href="about.html">About</a>
                     <a href="resume.html">Resume</a>
@@ -881,79 +1059,79 @@
                     <a href="https://linkedin.com/in/stutisrivastava" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
                     <a href="mailto:stutisri27@gmail.com" aria-label="Send Email"><i class="fas fa-envelope"></i></a>
                 </div>
-                 <p>© <span id="current-year"></span> Stuti Srivastava. All rights reserved.</p>
+                <p>© <span id="current-year"></span> Stuti Srivastava. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-     <script>
-        // --- DOM Elements ---
-        const menuToggle = document.getElementById('menu-toggle');
-        const navLinks = document.getElementById('nav-links');
-        const themeToggle = document.getElementById('theme-toggle');
-        const currentYearSpan = document.getElementById('current-year');
-        const navLinksElements = document.querySelectorAll('.nav-links a');
+    <script>
+       // --- DOM Elements ---
+       const menuToggle = document.getElementById('menu-toggle');
+       const navLinks = document.getElementById('nav-links');
+       const themeToggle = document.getElementById('theme-toggle');
+       const currentYearSpan = document.getElementById('current-year');
+       const navLinksElements = document.querySelectorAll('.nav-links a');
 
-        // --- Mobile Menu ---
-        menuToggle.addEventListener('click', () => {
-            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            navLinks.classList.toggle('active');
-            menuToggle.setAttribute('aria-expanded', String(!isExpanded));
-            menuToggle.querySelector('i').classList.toggle('fa-bars');
-            menuToggle.querySelector('i').classList.toggle('fa-times');
-        });
+       // --- Mobile Menu ---
+       menuToggle.addEventListener('click', () => {
+           const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+           navLinks.classList.toggle('active');
+           menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+           menuToggle.querySelector('i').classList.toggle('fa-bars');
+           menuToggle.querySelector('i').classList.toggle('fa-times');
+       });
 
-        // Close menu when a link is clicked
-        navLinksElements.forEach(link => {
-            link.addEventListener('click', () => {
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                    menuToggle.querySelector('i').classList.remove('fa-times');
-                    menuToggle.querySelector('i').classList.add('fa-bars');
-                }
-            });
-        });
+       // Close menu when a link is clicked
+       navLinksElements.forEach(link => {
+           link.addEventListener('click', () => {
+               if (navLinks.classList.contains('active')) {
+                   navLinks.classList.remove('active');
+                   menuToggle.setAttribute('aria-expanded', 'false');
+                   menuToggle.querySelector('i').classList.remove('fa-times');
+                   menuToggle.querySelector('i').classList.add('fa-bars');
+               }
+           });
+       });
 
-        // --- Theme Toggle ---
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+       // --- Theme Toggle ---
+       const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
-        const applyTheme = (theme) => {
-            const icon = themeToggle.querySelector('i');
-            if (theme === 'dark') {
-                document.body.classList.add('dark-theme');
-                icon.classList.replace('fa-moon', 'fa-sun');
-            } else {
-                document.body.classList.remove('dark-theme');
-                icon.classList.replace('fa-sun', 'fa-moon');
-            }
-        };
+       const applyTheme = (theme) => {
+           const icon = themeToggle.querySelector('i');
+           if (theme === 'dark') {
+               document.body.classList.add('dark-theme');
+               icon.classList.replace('fa-moon', 'fa-sun');
+           } else {
+               document.body.classList.remove('dark-theme');
+               icon.classList.replace('fa-sun', 'fa-moon');
+           }
+       };
 
-        const setThemePreference = (theme) => {
-            applyTheme(theme);
-            localStorage.setItem('theme', theme);
-        };
+       const setThemePreference = (theme) => {
+           applyTheme(theme);
+           localStorage.setItem('theme', theme);
+       };
 
-        // Load initial theme
-        const savedTheme = localStorage.getItem('theme');
-        const initialTheme = savedTheme || (prefersDarkScheme.matches ? 'dark' : 'light');
-        applyTheme(initialTheme);
+       // Load initial theme
+       const savedTheme = localStorage.getItem('theme');
+       const initialTheme = savedTheme || (prefersDarkScheme.matches ? 'dark' : 'light');
+       applyTheme(initialTheme);
 
-        // Theme toggle button listener
-        themeToggle.addEventListener('click', () => {
-            const newTheme = document.body.classList.contains('dark-theme') ? 'light' : 'dark';
-            setThemePreference(newTheme);
-        });
+       // Theme toggle button listener
+       themeToggle.addEventListener('click', () => {
+           const newTheme = document.body.classList.contains('dark-theme') ? 'light' : 'dark';
+           setThemePreference(newTheme);
+       });
 
         // System theme change listener
         prefersDarkScheme.addEventListener('change', (e) => {
             if (!localStorage.getItem('theme')) {
-                applyTheme(e.matches ? 'dark' : 'light');
+                 applyTheme(e.matches ? 'dark' : 'light');
             }
         });
 
 
-        // --- Active Navigation Link & Footer Year ---
+       // --- Active Navigation Link & Footer Year ---
         document.addEventListener('DOMContentLoaded', () => {
             // Set current year
             if (currentYearSpan) {
@@ -969,42 +1147,37 @@
                     const linkUrl = new URL(link.href, window.location.origin);
                     const linkPath = linkUrl.pathname;
 
-                    // Normalize paths (remove trailing slash if not root, handle index.html)
+                    // Normalize paths
                     const normalizePath = (path) => {
-                         // Treat index.html as root for comparison
                         if (path.endsWith('/index.html')) {
                             return path.substring(0, path.length - 'index.html'.length).replace(/\/$/, '') || '/';
                         }
-                        return path.replace(/\/$/, '') || '/'; // Ensure root is '/'
+                        return path.replace(/\/$/, '') || '/';
                     };
 
                     const normalizedCurrent = normalizePath(currentLocation);
                     const normalizedLink = normalizePath(linkPath);
 
-                    // Check if the normalized paths match exactly
                     if (normalizedCurrent === normalizedLink) {
                         link.classList.add('active');
-                        activeLinkFound = true; // Mark that we found the active link
+                        activeLinkFound = true;
                     } else {
-                        link.classList.remove('active'); // Ensure others are not active
+                        link.classList.remove('active');
                     }
                 } catch (e) {
                     console.error("Error processing link href:", link.href, e);
                 }
             });
 
-             // Fallback/Correction: Specifically check for 'about.html' if no exact match was found
-             // This helps if the server routing is slightly different or if normalization failed
-             if (!activeLinkFound && currentLocation.includes('about.html')) {
-                 const aboutLink = document.querySelector('.nav-links a[href="about.html"]');
-                 if (aboutLink) {
+             // Fallback/Correction: Specifically check for 'resume.html'
+             if (!activeLinkFound && currentLocation.includes('resume.html')) {
+                 const resumeLink = document.querySelector('.nav-links a[href="resume.html"]');
+                 if (resumeLink) {
                      navLinksElements.forEach(l => l.classList.remove('active')); // Reset all first
-                     aboutLink.classList.add('active');
+                     resumeLink.classList.add('active');
                  }
              }
         });
-
-     </script>
-
+    </script>
 </body>
 </html>
