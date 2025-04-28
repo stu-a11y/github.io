@@ -4,78 +4,701 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me - Stuti Srivastava</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Light theme (default) */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --accent-color: #4fc3f7;
+            --accent-hover: #0b7dda;
+            --card-bg: #ffffff;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --border-color: #e9ecef;
+            --transition: all 0.3s ease;
+        }
+
+        .dark-theme {
+            --bg-primary: #212529;
+            --bg-secondary: #343a40;
+            --text-primary: #f8f9fa;
+            --text-secondary: #adb5bd;
+            --card-bg: #2b3035;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            --border-color: #495057;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--bg-primary);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo a {
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 5px;
+            margin-left: 20px;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* About Hero Section */
+        .about-hero {
+            padding: 150px 0 80px;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--text-primary), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--text-secondary);
+        }
+
+        /* My Journey Section with Timeline */
+        .journey-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            position: relative;
+        }
+
+        .section-title span {
+            color: var(--accent-color);
+        }
+
+        .accent-emoji {
+            font-size: 1.5em;
+            display: inline-block;
+            transform: rotate(15deg);
+            margin: 0 5px;
+            color: #ffc107;
+        }
+
+        /* Timeline Styles */
+        .timeline-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 200px 40px 1fr;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timeline-date {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            padding-top: 3px;
+        }
+
+        .timeline-connector {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .timeline-connector::before {
+            content: '';
+            position: absolute;
+            width: 1px;
+            background-color: var(--border-color);
+            top: 30px;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item:last-child .timeline-connector::before {
+            display: none;
+        }
+
+        .timeline-dot {
+            width: 14px;
+            height: 14px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            margin-top: 8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-company {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .company-logo {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background-color: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .company-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .company-info h3 {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .company-name {
+            font-weight: 600;
+        }
+
+        .timeline-content {
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        /* Skills & Interests Section */
+        .skills-section {
+            padding: 80px 0;
+            background-color: var(--bg-secondary);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .skill-card ul {
+            list-style-type: none;
+        }
+
+        .skill-card li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-card li i {
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-secondary);
+            color: var(--text-secondary);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-social {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-social a {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 992px) {
+            .timeline-item {
+                grid-template-columns: 150px 40px 1fr;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--bg-primary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+                gap: 2rem;
+                padding: 2rem 0;
+            }
+            .nav-links.active {
+                left: 0;
+            }
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .timeline-connector {
+                display: none;
+            }
+            .timeline-date {
+                color: var(--accent-color);
+                font-weight: 600;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header/Navigation (same as index.html) -->
-    <header>...</header>
-
-    <!-- About Hero Section -->
-    <section class="page-header">
+    <header>
         <div class="container">
-            <h1>About Me</h1>
-            <p>IT DevOps Engineer with expertise in cloud infrastructure and Salesforce integration</p>
+            <nav>
+                <div class="logo">
+                    <a href="index.html">Stuti Srivastava</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="resume.html">Resume</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="about-hero">
+        <div class="container">
+            <h1>My Professional Journey</h1>
+            <p>From IoT Engineer to IT DevOps Specialist, one step at a time!</p>
         </div>
     </section>
 
-    <!-- Professional Journey -->
-    <section class="about-section">
+    <section class="journey-section">
         <div class="container">
-            <h2>My Journey</h2>
-            <div class="two-column">
-                <div class="column">
-                    <p>I'm an IT DevOps Engineer with a unique background in Electronics Engineering. My journey began with a passion for technology at Vishwakarma Institute of Technology, Pune, where I completed my B.Tech in Electronics and Telecommunication Engineering.</p>
-                    <p>My education continued at Veermata Jijabai Technical Institute, Mumbai where I specialized in Internet of Things with an M.Tech in Electronics Engineering, graduating with a 9.05 CPI.</p>
-                    <p>My professional path has taken me from software development to DevOps engineering, with a particular focus on cloud infrastructure and Salesforce integration. Currently at Philips, Chennai, I'm passionate about architecting microservices-based systems and implementing CI/CD pipelines.</p>
+            <h2 class="section-title">My career journey, one <span>pixel</span> <span class="accent-emoji">✨</span> at a time!</h2>
+            
+            <div class="timeline-container">
+                <!-- Current Role -->
+                <div class="timeline-item">
+                    <div class="timeline-date">
+                        September 2023 - Present
+                    </div>
+                    <div class="timeline-connector">
+                        <div class="timeline-dot"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-company">
+                            <div class="company-logo">
+                                <img src="https://placehold.co/100/4fc3f7/ffffff?text=P" alt="Philips Logo">
+                            </div>
+                            <div class="company-info">
+                                <h3>IT DevOps Engineer <span>at</span> <span class="company-name">Philips, Chennai</span></h3>
+                            </div>
+                        </div>
+                        <p>Architected microservices-based systems with FastAPI and Python for Salesforce integration and Azure OpenAI services</p>
+                    </div>
                 </div>
-                <div class="column">
-                    <img src="/api/placeholder/400/400" alt="Professional Photo">
+                
+                <!-- DevOps Intern -->
+                <div class="timeline-item">
+                    <div class="timeline-date">
+                        September 2022 - September 2023
+                    </div>
+                    <div class="timeline-connector">
+                        <div class="timeline-dot"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-company">
+                            <div class="company-logo">
+                                <img src="https://placehold.co/100/4fc3f7/ffffff?text=P" alt="Philips Logo">
+                            </div>
+                            <div class="company-info">
+                                <h3>DevOps Engineer Intern <span>at</span> <span class="company-name">Philips, Bengaluru</span></h3>
+                            </div>
+                        </div>
+                        <p>Developed automated deployment pipelines for cloud-based applications and created automated testing frameworks for quality assurance</p>
+                    </div>
+                </div>
+                
+                <!-- Masters Degree -->
+                <div class="timeline-item">
+                    <div class="timeline-date">
+                        2021 - 2023
+                    </div>
+                    <div class="timeline-connector">
+                        <div class="timeline-dot"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-company">
+                            <div class="company-logo">
+                                <img src="https://placehold.co/100/4fc3f7/ffffff?text=V" alt="VJTI Logo">
+                            </div>
+                            <div class="company-info">
+                                <h3>M.Tech in Electronics (IoT) <span>from</span> <span class="company-name">VJTI, Mumbai</span></h3>
+                            </div>
+                        </div>
+                        <p>Graduated with 9.05 CPI, specializing in Internet of Things and embedded systems</p>
+                    </div>
+                </div>
+                
+                <!-- Software Development Intern -->
+                <div class="timeline-item">
+                    <div class="timeline-date">
+                        August 2020 - January 2021
+                    </div>
+                    <div class="timeline-connector">
+                        <div class="timeline-dot"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-company">
+                            <div class="company-logo">
+                                <img src="https://placehold.co/100/4fc3f7/ffffff?text=A" alt="AMY Softech Logo">
+                            </div>
+                            <div class="company-info">
+                                <h3>Software Development Intern <span>at</span> <span class="company-name">AMY Softech, New Delhi</span></h3>
+                            </div>
+                        </div>
+                        <p>Developed full-stack applications using Microsoft Power Apps and Dynamics 365, implementing RESTful APIs for data integration</p>
+                    </div>
+                </div>
+                
+                <!-- Bachelor's Degree -->
+                <div class="timeline-item">
+                    <div class="timeline-date">
+                        2017 - 2021
+                    </div>
+                    <div class="timeline-connector">
+                        <div class="timeline-dot"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-company">
+                            <div class="company-logo">
+                                <img src="https://placehold.co/100/4fc3f7/ffffff?text=V" alt="VIT Logo">
+                            </div>
+                            <div class="company-info">
+                                <h3>B.Tech in Electronics & Telecom <span>from</span> <span class="company-name">VIT, Pune</span></h3>
+                            </div>
+                        </div>
+                        <p>Graduated with 7.69 CPI, focusing on electronic systems and communication networks</p>
+                    </div>
+                </div>
+                
+                <!-- Global Internship Program -->
+                <div class="timeline-item">
+                    <div class="timeline-date">
+                        2017
+                    </div>
+                    <div class="timeline-connector">
+                        <div class="timeline-dot"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-company">
+                            <div class="company-logo">
+                                <img src="https://placehold.co/100/4fc3f7/ffffff?text=N" alt="NTU Logo">
+                            </div>
+                            <div class="company-info">
+                                <h3>Global Internship Program <span>at</span> <span class="company-name">NTU, Singapore</span></h3>
+                            </div>
+                        </div>
+                        <p>One-month intensive program at Nanyang Technology University</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills & Expertise -->
-    <section class="about-section bg-light">
+    <section class="skills-section">
         <div class="container">
-            <h2>Expertise & Interests</h2>
-            <div class="expertise-grid">
-                <div class="expertise-card">
-                    <i class="fas fa-cloud"></i>
-                    <h3>Cloud Architecture</h3>
-                    <p>Designing scalable, reliable systems across AWS, Azure, and GCP</p>
+            <h2 class="section-title">Skills & Interests</h2>
+            
+            <div class="skills-container">
+                <div class="skill-card">
+                    <h3>Technical Expertise</h3>
+                    <ul>
+                        <li><i class="fas fa-server"></i> Microservices Architecture</li>
+                        <li><i class="fab fa-salesforce"></i> Salesforce Integration</li>
+                        <li><i class="fas fa-cloud"></i> Cloud Infrastructure (AWS, Azure, GCP)</li>
+                        <li><i class="fab fa-docker"></i> Container Orchestration (Docker, Kubernetes)</li>
+                        <li><i class="fas fa-code-branch"></i> CI/CD Pipelines</li>
+                        <li><i class="fab fa-python"></i> Python & FastAPI Development</li>
+                    </ul>
                 </div>
-                <div class="expertise-card">
-                    <i class="fas fa-code-branch"></i>
-                    <h3>CI/CD Pipelines</h3>
-                    <p>Building automated testing and deployment workflows</p>
+                
+                <div class="skill-card">
+                    <h3>Professional Achievements</h3>
+                    <ul>
+                        <li><i class="fas fa-certificate"></i> Salesforce Certified Platform Developer I</li>
+                        <li><i class="fas fa-users"></i> Organized Philips Dreamforce Event</li>
+                        <li><i class="fas fa-trophy"></i> 75% Test Coverage in Microservices Development</li>
+                        <li><i class="fas fa-graduation-cap"></i> M.Tech with 9.05 CPI from VJTI Mumbai</li>
+                    </ul>
                 </div>
-                <div class="expertise-card">
-                    <i class="fab fa-docker"></i>
-                    <h3>Containerization</h3>
-                    <p>Docker and Kubernetes orchestration for microservices</p>
-                </div>
-                <div class="expertise-card">
-                    <i class="fab fa-salesforce"></i>
-                    <h3>Salesforce Integration</h3>
-                    <p>Connecting enterprise systems with Salesforce CRM</p>
+                
+                <div class="skill-card">
+                    <h3>Personal Interests</h3>
+                    <ul>
+                        <li><i class="fas fa-book"></i> Technical Literature & Documentation</li>
+                        <li><i class="fas fa-laptop-code"></i> Open Source Contributions</li>
+                        <li><i class="fas fa-robot"></i> IoT & Embedded Systems</li>
+                        <li><i class="fas fa-brain"></i> AI/ML Applications in DevOps</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Personal Section (Optional) -->
-    <section class="about-section">
+    <footer>
         <div class="container">
-            <h2>Beyond Coding</h2>
-            <p>When I'm not architecting systems or optimizing CI/CD pipelines, I enjoy [your hobbies/interests]. I believe these activities help me bring creativity and fresh perspectives to my technical work.</p>
+            <div class="footer-content">
+                <p>© 2025 Stuti Srivastava. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="resume.html">Resume</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/stutisri27" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/stutisrivastava" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:stutisri27@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
         </div>
-    </section>
+    </footer>
 
-    <!-- Footer (same as index.html) -->
-    <footer>...</footer>
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.querySelector('i').classList.toggle('fa-bars');
+            menuToggle.querySelector('i').classList.toggle('fa-times');
+        });
 
-    <script src="assets/js/script.js"></script>
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Check for saved theme preference or use the system preference
+        const currentTheme = localStorage.getItem('theme') || 
+                            (prefersDarkScheme.matches ? 'dark' : 'light');
+        
+        // Set initial theme
+        if (currentTheme === 'dark') {
+            document.body.classList.add('dark-theme');
+            themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            
+            // Update icon
+            const icon = themeToggle.querySelector('i');
+            if (document.body.classList.contains('dark-theme')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Set active navigation link
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentLocation = location.pathname;
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            navLinks.forEach(link => {
+                const linkPath = new URL(link.href).pathname;
+                if (currentLocation === linkPath || 
+                    (currentLocation === '/' && linkPath.endsWith('index.html'))) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
