@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Stuti Srivastava</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Embedded Styles -->
+    <style>
+        :root {
+            /* Light theme (default) */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --accent-color: #4fc3f7; /* Light Blue */
+            --accent-hover: #03a9f4; /* Slightly darker blue */
+            --card-bg: #ffffff;
+            --card-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+            --border-color: #dee2e6;
+            --transition: all 0.3s ease-in-out;
+            --gradient-start: var(--text-primary);
+            --gradient-end: var(--accent-color);
+            --tag-bg: #e9f7fe;
+            --tag-text: #0b7dda;
+        }
+
+        .dark-theme {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2c2c2c;
+            --text-primary: #f8f9fa;
+            --text-secondary: #adb5bd;
+            --card-bg: #252525;
+            --card-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+            --border-color: #495057;
+            --gradient-start: var(--text-primary);
+            --gradient-end: var(--accent-color);
+            --tag-bg: #164e63;
+            --tag-text: #67e8f9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px; /* Offset for fixed header */
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--accent-color);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Accessibility */
+        :focus-visible {
+            outline: 3px solid var(--accent-color);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--bg-primary);
+            padding: 18px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .logo a {
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+        .logo a:hover {
+             color: var(--accent-color);
+        }
+
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-secondary);
+            position: relative;
+            padding: 8px 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2.5px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+            border-radius: 1px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 1.3rem;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .theme-toggle:hover {
+            background-color: var(--bg-secondary);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 1.6rem;
+            padding: 8px;
+        }
+
+        /* Common Section Title */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            position: relative;
+             transition: color 0.3s ease;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+             transition: background-color 0.3s ease;
+        }
+
+        /* Hero Section */
+        .projects-hero {
+            padding: 160px 0 80px;
+            text-align: center;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+             transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .projects-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 25px;
+            font-weight: 700;
+            color: var(--text-primary); /* Fallback */
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        .projects-hero p {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            max-width: 750px;
+            margin: 0 auto 30px;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 100px 0;
+            background-color: var(--bg-primary);
+             transition: background-color 0.3s ease;
+        }
+
+        .project-grid {
+            display: grid;
+            /* grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); */
+            /* Start with 1 column, adjust later if needed */
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .project-item {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+             .dark-theme & { box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); }
+        }
+
+         /* Add specific ID for easy linking */
+        .project-item#salesforce-ai-assistant {
+            /* Add any specific styles if needed */
+        }
+
+        .project-item header { /* Use header semantic tag */
+            position: static; /* Override fixed header style */
+            background: none;
+            box-shadow: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+
+        .project-item h3 {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 8px;
+             transition: color 0.3s ease;
+        }
+
+        .project-subtitle {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            font-weight: 500;
+             transition: color 0.3s ease;
+        }
+
+        .project-role {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            font-style: italic;
+             transition: color 0.3s ease;
+        }
+
+        /* Specific styling for the welcome message */
+        .project-intro-text {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: var(--bg-secondary);
+            border-left: 4px solid var(--accent-color);
+            border-radius: 4px;
+             transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .project-intro-text h3 { /* Title within intro */
+            font-size: 1.2rem; /* Adjust size */
+            font-weight: 700; /* Bold */
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+         .project-intro-text h5 { /* Subtitle/Description within intro */
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 400; /* Normal weight */
+            margin-bottom: 5px;
+             line-height: 1.6;
+              transition: color 0.3s ease;
+        }
+        .project-intro-text h5:last-child {
+            margin-bottom: 0;
+        }
+
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+             transition: color 0.3s ease;
+        }
+
+        .project-details-section {
+            margin-bottom: 30px;
+        }
+
+        .project-details-section h4 {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+             transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-details-section ul {
+            list-style: none;
+            padding-left: 5px;
+        }
+
+        .project-details-section li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 30px; /* Increased padding */
+            color: var(--text-secondary);
+             transition: color 0.3s ease;
+        }
+
+        .project-details-section li::before {
+            content: '';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--accent-color);
+            font-size: 1rem;
+            position: absolute;
+            left: 0px;
+            top: 5px;
+             transition: color 0.3s ease;
+             /* Specific icons for sections */
+        }
+         .project-achievements li::before { content: '\f00c'; } /* fa-check */
+         .project-impact li::before { content: '\f080'; } /* fa-chart-bar */
+
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .project-tag {
+            background-color: var(--tag-bg);
+            color: var(--tag-text);
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+        }
+        .project-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-secondary);
+            color: var(--text-secondary);
+            padding: 50px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+             transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .footer-content p {
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+             transition: color 0.3s ease;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-social {
+            margin: 30px 0 20px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .footer-social a {
+            color: var(--text-secondary);
+            font-size: 1.4rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-social a:hover {
+            color: var(--accent-color);
+            transform: translateY(-4px) scale(1.1);
+        }
+
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .menu-toggle {
+               display: block;
+                z-index: 1001;
+           }
+            .nav-buttons {
+                gap: 0.5rem;
+            }
+           .nav-links {
+               position: fixed;
+               top: 0;
+               left: -100%;
+               width: 100%;
+               height: 100vh;
+               background-color: var(--bg-primary);
+               flex-direction: column;
+               align-items: center;
+               justify-content: center;
+                transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1), background-color 0.3s ease;
+               gap: 2.5rem;
+               padding: 2rem 0;
+                z-index: 999;
+                box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+                overflow-y: auto;
+           }
+           .nav-links.active {
+               left: 0;
+           }
+            .nav-links a {
+                font-size: 1.2rem;
+           }
+            .projects-hero h1 {
+                font-size: clamp(2.2rem, 8vw, 3rem);
+            }
+            .projects-hero p {
+                 font-size: clamp(1rem, 4vw, 1.1rem);
+             }
+            .section-title {
+                 font-size: 2.3rem;
+             }
+             .project-item {
+                 padding: 25px;
+             }
+             .project-item h3 {
+                 font-size: 1.6rem;
+             }
+              .project-details-section h4 {
+                 font-size: 1.2rem;
+             }
+             .project-details-section li {
+                 padding-left: 25px;
+             }
+             .project-details-section li::before {
+                 font-size: 0.9rem;
+                 left: 0;
+             }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="index.html">Stuti Srivastava</a>
+                </div>
+                 <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="resume.html">Resume</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i> <!-- Default to moon -->
+                    </button>
+                    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                        <i class="fas fa-bars"></i> <!-- Default to bars -->
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+         <section class="projects-hero">
+            <div class="container">
+                <h1>My Projects</h1>
+                <p>Showcasing a selection of projects where I've applied my skills in AI, DevOps, and Full-Stack Development.</p>
+            </div>
+        </section>
+
+        <section class="projects-section">
+            <div class="container">
+                 <div class="project-grid">
+
+                     <!-- Project 1: Salesforce AI Assistant -->
+                     <article class="project-item" id="salesforce-ai-assistant">
+                         <header>
+                             <h3>Salesforce AI Assistant</h3>
+                             <p class="project-subtitle">Enterprise AI Integration Project | Philips Healthcare</p>
+                             <p class="project-role">Role: Lead Developer / AI Integration Engineer</p>
+                         </header>
+
+                         <div class="project-intro-text">
+                            <h3><strong>Welcome to your Salesforce AI Assistant!</strong></h3>
+                            <h5>Accelerate your sales process and strengthen customer connections.</h5>
+                            <h5>Here's what I can assist you with:</h5>
+                         </div>
+
+                         <p class="project-description">
+                            Architected and implemented an enterprise-grade AI assistant that seamlessly integrates with Salesforce CRM. This tool empowers sales representatives to perform complex CRM operations, retrieve information, and gain insights using natural language queries, significantly boosting productivity and user experience.
+                         </p>
+
+                         <div class="project-details-section project-achievements">
+                            <h4>Technical Achievements</h4>
+                            <ul>
+                                <li>Developed a robust multi-agent architecture using Python FastAPI that intelligently routes user queries to specialized agents (SOQL Querying, DML Operations, Metadata Handling, Summarization).</li>
+                                <li>Integrated Azure OpenAI service for natural language understanding and generating contextual, data-driven responses based on Salesforce record data.</li>
+                                <li>Implemented secure and efficient Apex REST services within Salesforce to handle metadata retrieval and validated DML operations, ensuring data integrity.</li>
+                                <li>Created a responsive and intuitive Lightning Web Component (LWC) interface featuring real-time response streaming and clear data visualization for users.</li>
+                            </ul>
+                         </div>
+
+                         <div class="project-details-section project-impact">
+                             <h4>Business Impact</h4>
+                             <ul>
+                                 <li>Reduced time spent by sales reps on routine CRM tasks (like record lookup and updates) by an estimated 40% through natural language automation.</li>
+                                 <li>Enabled faster access to critical customer information and facilitated quicker record updates directly from the conversational interface.</li>
+                                 <li>Improved data accuracy by providing guided record creation and updates, incorporating appropriate field validations surfaced via the AI.</li>
+                                 <li>Enhanced Salesforce user adoption by offering an intuitive conversational interface, lowering the technical barrier for less frequent users.</li>
+                             </ul>
+                         </div>
+
+                         <div class="project-details-section project-tech">
+                             <h4>Technologies Used</h4>
+                             <div class="project-tags">
+                                 <span class="project-tag">Python</span>
+                                 <span class="project-tag">FastAPI</span>
+                                 <span class="project-tag">Pydantic</span>
+                                 <span class="project-tag">Salesforce Apex</span>
+                                 <span class="project-tag">LWC</span>
+                                 <span class="project-tag">Azure OpenAI</span>
+                                 <span class="project-tag">REST APIs</span>
+                                 <span class="project-tag">LangChain</span>
+                                 <span class="project-tag">Vector Databases</span>
+                                 <span class="project-tag">Docker</span>
+                                 <span class="project-tag">JavaScript</span>
+                                 <span class="project-tag">HTML/CSS</span>
+                             </div>
+                         </div>
+
+                         <!-- Optional: Add links to code/demo if available -->
+                         <!--
+                         <div class="project-links">
+                             <a href="#" class="btn btn-outline">View Code (Private)</a>
+                             <a href="#" class="btn">Live Demo (Internal)</a>
+                         </div>
+                         -->
+
+                     </article>
+
+                     <!-- Add more <article class="project-item"> blocks here for other projects -->
+
+                 </div>
+            </div>
+        </section>
+    </main>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="resume.html">Resume</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/stutisri27" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/stutisrivastava" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:stutisri27@gmail.com" aria-label="Send Email"><i class="fas fa-envelope"></i></a>
+                </div>
+                <p>© <span id="current-year"></span> Stuti Srivastava. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- DOM Elements ---
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+        const themeToggle = document.getElementById('theme-toggle');
+        const currentYearSpan = document.getElementById('current-year');
+        const navLinksElements = document.querySelectorAll('.nav-links a');
+
+        // --- Mobile Menu ---
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            navLinks.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+            menuToggle.querySelector('i').classList.toggle('fa-bars');
+            menuToggle.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Close menu when a link is clicked
+        navLinksElements.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
+                }
+            });
+        });
+
+        // --- Theme Toggle ---
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        const applyTheme = (theme) => {
+            const icon = themeToggle.querySelector('i');
+            if (theme === 'dark') {
+                document.body.classList.add('dark-theme');
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                document.body.classList.remove('dark-theme');
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        };
+
+        const setThemePreference = (theme) => {
+            applyTheme(theme);
+            localStorage.setItem('theme', theme);
+        };
+
+        // Load initial theme
+        const savedTheme = localStorage.getItem('theme');
+        const initialTheme = savedTheme || (prefersDarkScheme.matches ? 'dark' : 'light');
+        applyTheme(initialTheme);
+
+        // Theme toggle button listener
+        themeToggle.addEventListener('click', () => {
+            const newTheme = document.body.classList.contains('dark-theme') ? 'light' : 'dark';
+            setThemePreference(newTheme);
+        });
+
+        // System theme change listener
+        prefersDarkScheme.addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+
+        // --- Active Navigation Link & Footer Year ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set current year
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+
+            // Set active nav link
+            const currentLocation = window.location.pathname;
+            let activeLinkFound = false;
+
+            navLinksElements.forEach(link => {
+                try {
+                    const linkUrl = new URL(link.href, window.location.origin);
+                    const linkPath = linkUrl.pathname;
+
+                    // Normalize paths
+                    const normalizePath = (path) => {
+                        if (path.endsWith('/index.html')) {
+                            return path.substring(0, path.length - 'index.html'.length).replace(/\/$/, '') || '/';
+                        }
+                        return path.replace(/\/$/, '') || '/';
+                    };
+
+                    const normalizedCurrent = normalizePath(currentLocation);
+                    const normalizedLink = normalizePath(linkPath);
+
+                    if (normalizedCurrent === normalizedLink) {
+                        link.classList.add('active');
+                        activeLinkFound = true;
+                    } else {
+                        link.classList.remove('active');
+                    }
+                } catch (e) {
+                    console.error("Error processing link href:", link.href, e);
+                }
+            });
+
+            // Fallback/Correction: Specifically check for 'projects.html'
+            if (!activeLinkFound && currentLocation.includes('projects.html')) {
+                const projectsLink = document.querySelector('.nav-links a[href="projects.html"]');
+                if (projectsLink) {
+                    navLinksElements.forEach(l => l.classList.remove('active')); // Reset all first
+                    projectsLink.classList.add('active');
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
